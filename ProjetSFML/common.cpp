@@ -1,4 +1,4 @@
-#include "common.h"
+#include "Common.hpp"
 
 sf::Sprite LoadSprite(const std::string _path, bool _isCentered)
 {
@@ -25,4 +25,14 @@ void BlitSprite(sf::Sprite _sprite, sf::Vector2f _pos, float _angle, sf::RenderW
 	_sprite.setRotation(_angle);
 	_sprite.setPosition(_pos);
 	_window.draw(_sprite);
+}
+
+float ToRadians(float _degrees)
+{
+	return std::fmod(_degrees * 3.14159265359f / 180.f, 2 * 3.14159265359f);
+}
+
+float ToDegrees(float _radians)
+{
+	return std::fmod(_radians * 180.f / 3.14159265359f, 360);
 }
