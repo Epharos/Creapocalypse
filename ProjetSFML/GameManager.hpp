@@ -44,6 +44,7 @@ public:
     sf::RenderWindow& GetWindow() { return m_window; }
     World& GetWorld() { return m_world; }
     Camera& GetCamera() { return m_camera; }
+    Player*& GetPlayer() { return m_player; }
     bool GetDebugMode() { return m_debugMode; }
     int GetWave() { return m_wave; }
     TextRenderer& GetTextRenderer() { return m_textRenderer; }

@@ -1,5 +1,10 @@
 #include "Common.hpp"
 
+#include "Building.hpp"
+#include "GameManager.hpp"
+#include "BaseTurret.hpp"
+#include "Bullet.hpp"
+
 sf::Sprite LoadSprite(const std::string _path, bool _isCentered)
 {
 	//Création et chargement de la texture
@@ -35,4 +40,24 @@ float ToRadians(float _degrees)
 float ToDegrees(float _radians)
 {
 	return std::fmod(_radians * 180.f / 3.14159265359f, 360);
+}
+
+bool IsBuilding(Entity* _entity)
+{
+	return dynamic_cast<Building*>(_entity) != nullptr;
+}
+
+bool IsPlayer(Entity* _entity)
+{
+	return _entity == GameManager::GetInstance()->GetPlayer();
+}
+
+bool IsTurret(Entity* _entity)
+{
+	return dynamic_cast<BaseTurret*>(_entity) != nullptr;
+}
+
+bool IsBullet(Entity* _entity)
+{
+	return dynamic_cast<Bullet*>(_entity) != nullptr;
 }

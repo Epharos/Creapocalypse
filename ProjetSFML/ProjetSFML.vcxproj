@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Barn.cpp" />
+    <ClCompile Include="BaseTurret.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -153,6 +154,9 @@
   <ItemGroup>
     <ClInclude Include="Animation.hpp" />
     <ClInclude Include="Barn.hpp" />
+    <ClInclude Include="BaseTurret.hpp" />
+    <ClInclude Include="Building.hpp" />
+    <ClInclude Include="Bullet.hpp" />
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="Entity.hpp" />
@@ -161,6 +165,7 @@
     <ClInclude Include="Hangar.hpp" />
     <ClInclude Include="House.hpp" />
     <ClInclude Include="LivingEntity.hpp" />
+    <ClInclude Include="LMGTurret.hpp" />
     <ClInclude Include="MathUtil.hpp" />
     <ClInclude Include="Pigfarm.hpp" />
     <ClInclude Include="Player.hpp" />

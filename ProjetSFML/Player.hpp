@@ -19,6 +19,8 @@ private:
 
 	sf::Vector2f m_targetPosition;
 
+	float m_money;
+
 public:
 	Player(std::string _texturePath, sf::FloatRect _hitbox);
 
@@ -26,6 +28,8 @@ public:
 	virtual void Draw(sf::RenderWindow& _window, Camera _camera) override;
 	virtual bool IsDead() override;
 	virtual void Kill() override;
+
+	float& GetMoney() { return m_money; }
 };
 
 #endif

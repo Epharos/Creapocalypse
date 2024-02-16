@@ -1,9 +1,9 @@
 #ifndef HOUSE__HPP
 #define HOUSE__HPP
 
-#include "LivingEntity.hpp"
+#include "Building.hpp"
 
-class House : public LivingEntity
+class House : public Building
 {
 public:
 	House();

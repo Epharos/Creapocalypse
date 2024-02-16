@@ -1,9 +1,9 @@
 #ifndef HANGAR_HPP
 #define HANGAR_HPP
 
-#include "LivingEntity.hpp"
+#include "Building.hpp"
 
-class Hangar : public LivingEntity
+class Hangar : public Building
 {
 private:
 	sf::FloatRect m_secondHitbox;

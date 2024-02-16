@@ -1,9 +1,9 @@
 #ifndef BARN_HPP
 #define BARN_HPP
 
-#include "LivingEntity.hpp"
+#include "Building.hpp"
 
-class Barn : public LivingEntity
+class Barn : public Building
 {
 public:
 	Barn();

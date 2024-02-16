@@ -1,9 +1,9 @@
 #ifndef GARAGE__HPP
 #define GARAGE__HPP
 
-#include "LivingEntity.hpp"
+#include "Building.hpp"
 
-class Garage : public LivingEntity
+class Garage : public Building
 {
 private:
 	sf::FloatRect m_secondHitbox;

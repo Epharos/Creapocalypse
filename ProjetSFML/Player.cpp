@@ -8,6 +8,7 @@ Player::Player(std::string _texturePath, sf::FloatRect _hitbox) :
 	m_animation = Animation(_texturePath, sf::Vector2i(32, 64), 4, 0.1f);
 	m_speed = 5.f;
 	m_position = sf::Vector2f(125, 125);
+	m_money = 100.f;
 }
 
 void Player::Update(float _dt)

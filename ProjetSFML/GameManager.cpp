@@ -77,6 +77,16 @@ void GameManager::Run()
 					std::cout << "Debug mode: " << (m_debugMode ? "ON" : "OFF") << std::endl;
 				}
 			}
+
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (event.mouseButton.button == sf::Mouse::Right)
+				{
+					sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
+					sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
+					m_world.SpawnEntity(new BaseTurret(worldPos, 0.f, 200.f, 1.f, 5.f));
+				}
+			}
 		}
 
 		Update();

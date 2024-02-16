@@ -1,9 +1,9 @@
 #ifndef PIGFARM_HPP
 #define PIGFARM_HPP
 
-#include "LivingEntity.hpp"
+#include "Building.hpp"
 
-class Pigfarm : public LivingEntity
+class Pigfarm : public Building
 {
 public:
 	Pigfarm();
