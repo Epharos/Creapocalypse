@@ -5,6 +5,7 @@
 #include "World.hpp"
 #include "Camera.hpp"
 #include "Player.hpp"
+#include "TextRenderer.hpp"
 
 class GameManager
 {
@@ -19,27 +20,17 @@ private:
 
     bool m_debugMode = false;
 
-    //--- TO DELETE AFTER TESTING ---//
-    sf::Font font;
-    sf::Text fpsCounter;
-    //-------------------------------//
+    int m_wave = 1;
+
+    TextRenderer m_textRenderer;
 
     static GameManager* _INSTANCE;
 
     GameManager() : 
-        m_window(sf::VideoMode(1024, 768), "Creapocalypse"), m_world(), m_camera(), m_clock(),
+        m_window(sf::VideoMode(1920, 1080), "Creapocalypse"), m_world(), m_camera(), m_clock(),
         m_deltaTime(.0f), m_player(new Player("assets/player/idle.png", sf::FloatRect(0.f, 0.f, 32.f, 64.f)))
     {
         m_world.SpawnEntity(m_player);
-
-        //--- TO DELETE AFTER TESTING ---//
-        font.loadFromFile("arial.ttf");
-
-        fpsCounter.setFont(font);
-        fpsCounter.setCharacterSize(24);
-        fpsCounter.setFillColor(sf::Color::Yellow);
-        fpsCounter.setPosition(10, 10);
-        //-------------------------------//
     };
 
 public:
@@ -53,6 +44,9 @@ public:
     sf::RenderWindow& GetWindow() { return m_window; }
     World& GetWorld() { return m_world; }
     Camera& GetCamera() { return m_camera; }
+    bool GetDebugMode() { return m_debugMode; }
+    int GetWave() { return m_wave; }
+    TextRenderer& GetTextRenderer() { return m_textRenderer; }
 
     /// <summary>
     /// Updates the game every frame

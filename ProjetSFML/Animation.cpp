@@ -38,7 +38,7 @@ void Animation::Draw(sf::RenderWindow& _window, sf::Vector2f _pos, float _angle)
 	sf::IntRect rectSourceSprite(m_currentFrame * m_frameSize.x, 0, m_frameSize.x, m_frameSize.y);
 	m_sprite.setTextureRect(rectSourceSprite);
 	m_sprite.setPosition(_pos);
-	m_sprite.setScale(ToDegrees(_angle) > 90 && ToDegrees(_angle) < 270 ? -1 : 1, 1);
+	m_sprite.setScale(ToDegrees(_angle) > 90 && ToDegrees(_angle) < 270 ? 1 : -1, 1);
 	_window.draw(m_sprite);
 }
 

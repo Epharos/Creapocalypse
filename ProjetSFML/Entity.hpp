@@ -40,7 +40,11 @@ public:
 	/// </summary>
 	virtual void Kill() = 0;
 
-	void SetPosition(sf::Vector2f& _pos) { m_position = _pos; }
+	/// <summary>
+	/// Set the position and the hitbox of the entity
+	/// </summary>
+	/// <param name="_pos"></param>
+	virtual void SetPosition(sf::Vector2f& _pos);
 	void SetYaw(float _yaw) { m_yaw = _yaw; }
 	void SetSpeed(float _speed) { m_speed = _speed; }
 
@@ -54,6 +58,8 @@ public:
 	/// <param name="_window">The window plateform</param>
 	/// <returns>Returns if the entity should be rendered or not</returns>
 	bool ShouldBeRendered(Camera _camera, sf::RenderWindow& _window);
+
+	virtual bool IsColliding(Entity* _other);
 };
 
 #endif

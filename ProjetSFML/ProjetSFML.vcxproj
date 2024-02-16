@@ -134,24 +134,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Barn.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Garage.cpp" />
+    <ClCompile Include="Hangar.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Pigfarm.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.hpp" />
+    <ClInclude Include="Barn.hpp" />
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="GameManager.hpp" />
+    <ClInclude Include="Garage.hpp" />
+    <ClInclude Include="Hangar.hpp" />
+    <ClInclude Include="House.hpp" />
     <ClInclude Include="LivingEntity.hpp" />
+    <ClInclude Include="MathUtil.hpp" />
+    <ClInclude Include="Pigfarm.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="TextRenderer.hpp" />
     <ClInclude Include="Tile.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>

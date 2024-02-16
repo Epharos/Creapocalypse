@@ -45,9 +45,8 @@ void GameManager::Draw()
 
 	if (m_debugMode)
 	{
-		fpsCounter.setString("FPS: " + std::to_string(static_cast<int>(1.f / m_deltaTime)));
-
-		m_window.draw(fpsCounter);
+		m_textRenderer.RenderText(m_window, "FPS: " + std::to_string(static_cast<int>(1.f / m_deltaTime)), sf::Vector2f(10, 10), 16, sf::Color::Yellow);
+		m_textRenderer.RenderText(m_window, "Camera position: " + std::to_string(m_camera.GetPosition().x) + ", " + std::to_string(m_camera.GetPosition().y), sf::Vector2f(10, 30), 16, sf::Color::Yellow);
 	}
 
 	m_window.display();

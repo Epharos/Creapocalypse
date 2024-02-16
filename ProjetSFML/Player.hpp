@@ -17,6 +17,8 @@ private:
 
 	PlayerState m_state;
 
+	sf::Vector2f m_targetPosition;
+
 public:
 	Player(std::string _texturePath, sf::FloatRect _hitbox);
 

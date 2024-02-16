@@ -14,6 +14,8 @@ private:
 
 	Tile* m_tiles[MAP_SIZE][MAP_SIZE] = { nullptr };
 
+	void SpawnBuildings();
+
 public:
 	World();
 	~World();
@@ -35,7 +37,22 @@ public:
 	/// Adds an entity to the world
 	/// </summary>
 	/// <param name="_entity">The entity to add</param>
-	void SpawnEntity(Entity* _entity) { m_entities.push_back(_entity); }
+	void SpawnEntity(Entity* _entity);
+
+	/// <summary>
+	/// Sets entity position and then adds it to the world
+	/// </summary>
+	/// <param name="_entity">The entity to add</param>
+	/// <param name="_position">The spawn position of the entity</param>
+	void SpawnEntity(Entity* _entity, sf::Vector2f _position);
+
+	/// <summary>
+	/// Tries to spawn an entity at a random position, checking for collisions
+	/// </summary>
+	/// <param name="_entity">The entity to add</param>
+	/// <param name="_position">The spawn position of the entity</param>
+	/// <returns>True if the entity was spawned, false otherwise</returns>
+	bool SpawnEntityAtRandomLocation(Entity* _entity, sf::Vector2f _position);
 };
 
 #endif

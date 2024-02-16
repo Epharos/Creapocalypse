@@ -43,6 +43,24 @@
     <Filter Include="Fichiers sources\Utility">
       <UniqueIdentifier>{78032462-bbd0-411f-ac7f-11c1025e9283}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Entities\Ennemis">
+      <UniqueIdentifier>{ffc4b78b-0c9b-4750-b09a-0dd1a2dfe906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Entities\Turrets">
+      <UniqueIdentifier>{693bd5a0-2954-4df5-bbb3-d357161fd6de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Entities\Ennemis">
+      <UniqueIdentifier>{25cacc88-6648-4eb6-a8fb-955ea47d790c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Entities\Turrets">
+      <UniqueIdentifier>{b86b6b37-c03f-4719-8eef-5367d1210b67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Entities\Buildings">
+      <UniqueIdentifier>{baffe3e7-b3bb-45e5-9323-6c3db72e139d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Entities\Buildings">
+      <UniqueIdentifier>{0caa09d4-9313-4b92-b359-4a53083ad113}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -75,6 +93,24 @@
     <ClCompile Include="Player.cpp">
       <Filter>Fichiers sources\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="TextRenderer.cpp">
+      <Filter>Fichiers sources\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="House.cpp">
+      <Filter>Fichiers sources\Entities\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Garage.cpp">
+      <Filter>Fichiers sources\Entities\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Hangar.cpp">
+      <Filter>Fichiers sources\Entities\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Pigfarm.cpp">
+      <Filter>Fichiers sources\Entities\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Barn.cpp">
+      <Filter>Fichiers sources\Entities\Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp">
@@ -103,6 +139,27 @@
     </ClInclude>
     <ClInclude Include="LivingEntity.hpp">
       <Filter>Fichiers d%27en-tête\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtil.hpp">
+      <Filter>Fichiers d%27en-tête\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TextRenderer.hpp">
+      <Filter>Fichiers d%27en-tête\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="House.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Garage.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Hangar.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Pigfarm.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Barn.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

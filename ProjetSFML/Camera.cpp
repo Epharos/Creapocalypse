@@ -7,7 +7,7 @@ sf::Vector2f Camera::WorldToScreen(sf::Vector2f _worldPos)
 
 sf::Vector2f Camera::ScreenToWorld(sf::Vector2f _screenPos)
 {
-	return (_screenPos + m_position) * static_cast<float>(TILE_SCALE);
+	return (_screenPos / static_cast<float>(TILE_SCALE) + m_position);
 }
 
 void Camera::Move(sf::Vector2f _direction, float _dt)
