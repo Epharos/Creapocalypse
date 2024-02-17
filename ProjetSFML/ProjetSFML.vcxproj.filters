@@ -123,6 +123,9 @@
     <ClCompile Include="MathUtil.cpp">
       <Filter>Fichiers sources\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Fichiers sources\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="LMGTurret.hpp">
       <Filter>Fichiers d%27en-tête\Entities\Turrets</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.hpp">
+      <Filter>Fichiers d%27en-tête\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

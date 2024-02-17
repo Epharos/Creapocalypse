@@ -2,6 +2,7 @@
 #define ANIMATION__HPP
 
 #include "Common.hpp"
+#include "TextureManager.hpp"
 
 class Animation
 {
@@ -12,6 +13,8 @@ private:
 	int m_currentFrame;
 	float m_duration;
 	float m_elapsedTime;
+
+	bool m_once;
 
 public:
 	Animation(const std::string _path, sf::Vector2i _frameSize, int _numFrames, float _duration);
@@ -36,8 +39,16 @@ public:
 	/// </summary>
 	void Reset();
 
+	/// <summary>
+	/// Sets the animation to play only once
+	/// </summary>
+	void Once() { m_once = true; }
+
 	/// <returns>Returns the size of the frame</returns>
 	sf::Vector2i GetFrameSize() const { return m_frameSize; }
+
+	/// <returns>Returns whether the animation is finished or not</returns>
+	bool IsDone() const { return m_once && m_currentFrame == m_numFrames; }
 };
 
 #endif

@@ -1,11 +1,11 @@
 #include "Hangar.hpp"
 #include "GameManager.hpp"
 
-Hangar::Hangar() : Building("assets/buildings/hangar.png", sf::FloatRect(0, 0, 112, 112)), m_secondHitbox(sf::FloatRect(0, 0, 48, 129))
+Hangar::Hangar() : Building("grass", sf::FloatRect(0, 0, 112, 112)), m_secondHitbox(sf::FloatRect(0, 0, 48, 129))
 {
 	m_maxHealth = 2000;
 	m_health = m_maxHealth;
-	m_animation = Animation("assets/buildings/hangar.png", sf::Vector2i(162, 129), 1, std::numeric_limits<float>::max());
+	m_animation = Animation("hangar", sf::Vector2i(162, 129), 1, std::numeric_limits<float>::max());
 	m_yaw = 3.15f;
 }
 

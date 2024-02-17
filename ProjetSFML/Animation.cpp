@@ -2,19 +2,19 @@
 
 Animation::Animation(const std::string _path, sf::Vector2i _frameSize, int _numFrames, float _duration)
 {
-	sf::Texture* texture = new sf::Texture();
-	texture->loadFromFile(_path);
-	m_sprite.setTexture(*texture);
+	m_sprite.setTexture(*TextureManager::GetTexture(_path));
 	m_sprite.setOrigin(_frameSize.x / 2, _frameSize.y);
 	m_frameSize = _frameSize;
 	m_numFrames = _numFrames;
 	m_duration = _duration;
 	m_currentFrame = 0;
 	m_elapsedTime = 0;
+	m_once = false;
 }
 
 Animation::~Animation()
 {
+	//delete m_sprite.getTexture();
 }
 
 void Animation::Update(float _dt)
@@ -26,7 +26,7 @@ void Animation::Update(float _dt)
 		m_elapsedTime -= m_duration;
 		m_currentFrame++;
 
-		if (m_currentFrame >= m_numFrames)
+		if (m_currentFrame >= m_numFrames && !m_once)
 		{
 			m_currentFrame = 0;
 		}

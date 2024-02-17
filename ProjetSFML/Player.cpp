@@ -3,12 +3,14 @@
 #include "MathUtil.hpp"
 
 Player::Player(std::string _texturePath, sf::FloatRect _hitbox) : 
-	LivingEntity(_texturePath, _hitbox), m_state(PlayerState::Idle), m_walkingAnimation("assets/player/moving.png", sf::Vector2i(32, 64), 10, 0.1f)
+	LivingEntity(_texturePath, _hitbox), m_state(PlayerState::Idle), m_walkingAnimation("player_walk", sf::Vector2i(32, 64), 10, 0.1f)
 {
 	m_animation = Animation(_texturePath, sf::Vector2i(32, 64), 4, 0.1f);
 	m_speed = 5.f;
 	m_position = sf::Vector2f(125, 125);
-	m_money = 100.f;
+	m_money = 100000.f;
+	m_maxHealth = 100000.f;
+	m_health = m_maxHealth;
 }
 
 void Player::Update(float _dt)

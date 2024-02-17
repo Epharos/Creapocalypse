@@ -1,11 +1,11 @@
 #include "Garage.hpp"
 #include "GameManager.hpp"
 
-Garage::Garage() : Building("assets/buildings/garage.png", sf::FloatRect(0, 0, 176, 150)), m_secondHitbox(sf::FloatRect(0, 0, 176, 150))
+Garage::Garage() : Building("grass", sf::FloatRect(0, 0, 176, 150)), m_secondHitbox(sf::FloatRect(0, 0, 176, 150))
 {
 	m_maxHealth = 4000;
 	m_health = m_maxHealth;
-	m_animation = Animation("assets/buildings/garage.png", sf::Vector2i(449, 150), 1, std::numeric_limits<float>::max());
+	m_animation = Animation("garage", sf::Vector2i(449, 150), 1, std::numeric_limits<float>::max());
 	m_yaw = 3.15f;
 }
 

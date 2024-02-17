@@ -6,6 +6,14 @@
 class Player;
 class World;
 
+enum TurretState
+{
+	Spawning,
+	Searching,
+	Shooting,
+	Dying
+};
+
 class BaseTurret : public LivingEntity
 {
 protected:
@@ -18,6 +26,8 @@ protected:
 	Entity* m_target;
 
 	float m_fireTimer;
+
+	TurretState m_state;
 
 public:
 	BaseTurret(sf::Vector2f _pos, float _rotation, float _range, float _fireRate, float _spread);

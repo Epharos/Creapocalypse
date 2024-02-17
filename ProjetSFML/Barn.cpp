@@ -1,10 +1,10 @@
 #include "Barn.hpp"
 
-Barn::Barn() : Building("assets/buildings/barn.png", sf::FloatRect(0, 0, 112, 104))
+Barn::Barn() : Building("grass", sf::FloatRect(0, 0, 112, 104))
 {
 	m_maxHealth = 3000;
 	m_health = m_maxHealth;
-	m_animation = Animation("assets/buildings/barn.png", sf::Vector2i(112, 104), 1, std::numeric_limits<float>::max());
+	m_animation = Animation("barn", sf::Vector2i(112, 104), 1, std::numeric_limits<float>::max());
 	m_yaw = 3.15f;
 }
 

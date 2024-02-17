@@ -28,7 +28,7 @@ private:
 
     GameManager() : 
         m_window(sf::VideoMode(1920, 1080), "Creapocalypse"), m_world(), m_camera(), m_clock(),
-        m_deltaTime(.0f), m_player(new Player("assets/player/idle.png", sf::FloatRect(0.f, 0.f, 32.f, 64.f)))
+        m_deltaTime(.0f), m_player(new Player("player", sf::FloatRect(0.f, 0.f, 32.f, 64.f)))
     {
         m_world.SpawnEntity(m_player);
     };

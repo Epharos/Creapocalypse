@@ -152,6 +152,7 @@
     <ClCompile Include="Pigfarm.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextRenderer.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="Pigfarm.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="TextRenderer.hpp" />
+    <ClInclude Include="TextureManager.hpp" />
     <ClInclude Include="Tile.hpp" />
     <ClInclude Include="World.hpp" />
   </ItemGroup>

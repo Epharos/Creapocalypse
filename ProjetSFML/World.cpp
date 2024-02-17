@@ -51,17 +51,9 @@ void World::Update(float _deltaTime)
 	for (auto& entity : m_entities)
 	{
 		entity->Update(_deltaTime);
-
-		if (dynamic_cast<BaseTurret*>(entity) != nullptr)
-		{
-			BaseTurret* turret = dynamic_cast<BaseTurret*>(entity);
-
-			if (turret->GetTarget() != nullptr && turret->GetTarget()->IsDead())
-			{
-				turret->SetTarget(nullptr);
-			}
-		}
 	}
+
+
 }
 
 void World::Draw(sf::RenderWindow& _window, Camera _camera)
