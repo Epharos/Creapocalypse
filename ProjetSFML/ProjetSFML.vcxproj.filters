@@ -114,6 +114,15 @@
     <ClCompile Include="BaseTurret.cpp">
       <Filter>Fichiers sources\Entities\Turrets</Filter>
     </ClCompile>
+    <ClCompile Include="LMGTurret.cpp">
+      <Filter>Fichiers sources\Entities\Turrets</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Fichiers sources\Entities\Turrets</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtil.cpp">
+      <Filter>Fichiers sources\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp">

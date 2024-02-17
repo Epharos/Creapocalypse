@@ -75,13 +75,3 @@ void Player::Draw(sf::RenderWindow& _window, Camera _camera)
 		break;
 	}
 }
-
-bool Player::IsDead()
-{
-	return m_health <= 0;
-}
-
-void Player::Kill()
-{
-	m_health = 0;
-}

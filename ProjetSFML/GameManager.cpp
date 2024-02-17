@@ -1,5 +1,7 @@
 #include "GameManager.hpp"
 
+#include "LMGTurret.hpp"
+
 GameManager* GameManager::_INSTANCE = nullptr;
 
 GameManager* GameManager::GetInstance()
@@ -84,7 +86,7 @@ void GameManager::Run()
 				{
 					sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
 					sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
-					m_world.SpawnEntity(new BaseTurret(worldPos, 0.f, 200.f, 1.f, 5.f));
+					m_world.SpawnEntity(new LightMachineGunTurret(worldPos, 0.f));
 				}
 			}
 		}

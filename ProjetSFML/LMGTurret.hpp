@@ -9,10 +9,8 @@ public:
 	LightMachineGunTurret(sf::Vector2f _pos, float _rotation);
 
 	virtual void Shoot() override;
-	virtual bool IsTargetValid(Entity* _target) override;
-	virtual void AcquireTarget(World* _world) override;
-	virtual void Draw(sf::RenderWindow* _window) override;
-	virtual void Update(float _dt) override;
+	virtual bool IsTargetValid(Entity*& _target) override;
+	virtual void AcquireTarget(World& _world) override;
 };
 
 #endif

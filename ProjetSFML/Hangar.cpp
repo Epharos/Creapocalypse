@@ -1,7 +1,7 @@
 #include "Hangar.hpp"
 #include "GameManager.hpp"
 
-Hangar::Hangar() : LivingEntity("assets/buildings/hangar.png", sf::FloatRect(0, 0, 112, 112)), m_secondHitbox(sf::FloatRect(0, 0, 48, 129))
+Hangar::Hangar() : Building("assets/buildings/hangar.png", sf::FloatRect(0, 0, 112, 112)), m_secondHitbox(sf::FloatRect(0, 0, 48, 129))
 {
 	m_maxHealth = 2000;
 	m_health = m_maxHealth;
@@ -37,16 +37,6 @@ void Hangar::Draw(sf::RenderWindow& _window, Camera _camera)
 	}
 
 	m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw);
-}
-
-bool Hangar::IsDead()
-{
-	return m_health <= 0;
-}
-
-void Hangar::Kill()
-{
-	m_health = 0;
 }
 
 void Hangar::SetPosition(sf::Vector2f& _pos)

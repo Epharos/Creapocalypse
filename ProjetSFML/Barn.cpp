@@ -1,6 +1,6 @@
 #include "Barn.hpp"
 
-Barn::Barn() : LivingEntity("assets/buildings/barn.png", sf::FloatRect(0, 0, 112, 104))
+Barn::Barn() : Building("assets/buildings/barn.png", sf::FloatRect(0, 0, 112, 104))
 {
 	m_maxHealth = 3000;
 	m_health = m_maxHealth;
@@ -16,14 +16,4 @@ void Barn::Update(float _dt)
 void Barn::Draw(sf::RenderWindow& _window, Camera _camera)
 {
 	Entity::Draw(_window, _camera);
-}
-
-bool Barn::IsDead()
-{
-	return m_health <= 0;
-}
-
-void Barn::Kill()
-{
-	m_health = 0;
 }

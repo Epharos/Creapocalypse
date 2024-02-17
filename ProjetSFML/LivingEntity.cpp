@@ -19,3 +19,13 @@ void LivingEntity::Heal(unsigned int _heal)
 		m_health = m_maxHealth;
 	}
 }
+
+bool LivingEntity::IsDead()
+{
+	return m_health <= 0;
+}
+
+void LivingEntity::Kill()
+{
+	m_health = 0;
+}

@@ -6,6 +6,8 @@
 #include "Barn.hpp"
 #include "GameManager.hpp"
 
+#include "BaseTurret.hpp"
+
 World::World()
 {
 	// Initialize the tiles
@@ -43,10 +45,22 @@ World::~World()
 
 void World::Update(float _deltaTime)
 {
+	m_entities.remove_if([](Entity* _entity) { return _entity->IsDead(); });
+
 	// Update all the entities
 	for (auto& entity : m_entities)
 	{
 		entity->Update(_deltaTime);
+
+		if (dynamic_cast<BaseTurret*>(entity) != nullptr)
+		{
+			BaseTurret* turret = dynamic_cast<BaseTurret*>(entity);
+
+			if (turret->GetTarget() != nullptr && turret->GetTarget()->IsDead())
+			{
+				turret->SetTarget(nullptr);
+			}
+		}
 	}
 }
 

@@ -14,8 +14,6 @@ public:
 
 	void Update(float _dt);
 	void Draw(sf::RenderWindow& _window, Camera _camera);
-	bool IsDead();
-	void Kill();
 	bool IsColliding(Entity* _other);
 
 	void SetPosition(sf::Vector2f& _pos);

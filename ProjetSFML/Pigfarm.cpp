@@ -1,6 +1,6 @@
 #include "Pigfarm.hpp"
 
-Pigfarm::Pigfarm() : LivingEntity("assets/buildings/pigfarm.png", sf::FloatRect(0, 0, 336, 160))
+Pigfarm::Pigfarm() : Building("assets/buildings/pigfarm.png", sf::FloatRect(0, 0, 336, 160))
 {
 	m_maxHealth = 3000;
 	m_health = m_maxHealth;
@@ -16,14 +16,4 @@ void Pigfarm::Update(float _dt)
 void Pigfarm::Draw(sf::RenderWindow& _window, Camera _camera)
 {
 	LivingEntity::Draw(_window, _camera);
-}
-
-bool Pigfarm::IsDead()
-{
-	return m_health <= 0;
-}
-
-void Pigfarm::Kill()
-{
-	m_health = 0;
 }

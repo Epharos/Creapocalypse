@@ -1,7 +1,7 @@
 #include "Garage.hpp"
 #include "GameManager.hpp"
 
-Garage::Garage() : LivingEntity("assets/buildings/garage.png", sf::FloatRect(0, 0, 176, 150)), m_secondHitbox(sf::FloatRect(0, 0, 176, 150))
+Garage::Garage() : Building("assets/buildings/garage.png", sf::FloatRect(0, 0, 176, 150)), m_secondHitbox(sf::FloatRect(0, 0, 176, 150))
 {
 	m_maxHealth = 4000;
 	m_health = m_maxHealth;
@@ -37,16 +37,6 @@ void Garage::Draw(sf::RenderWindow& _window, Camera _camera)
 	}
 
 	m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw);
-}
-
-bool Garage::IsDead()
-{
-	return m_health <= 0;
-}
-
-void Garage::Kill()
-{
-	m_health = 0;
 }
 
 void Garage::SetPosition(sf::Vector2f& _pos)

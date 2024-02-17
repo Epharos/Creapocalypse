@@ -26,6 +26,9 @@ public:
 
 	unsigned int GetHealth() const { return m_health; }
 	unsigned int GetMaxHealth() const { return m_maxHealth; }
+
+	virtual bool IsDead() override;
+	virtual void Kill() override;
 };
 
 #endif

@@ -105,6 +105,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,6 +137,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Barn.cpp" />
     <ClCompile Include="BaseTurret.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -144,7 +146,9 @@
     <ClCompile Include="Hangar.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
+    <ClCompile Include="LMGTurret.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MathUtil.cpp" />
     <ClCompile Include="Pigfarm.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextRenderer.cpp" />

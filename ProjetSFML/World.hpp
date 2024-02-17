@@ -53,6 +53,8 @@ public:
 	/// <param name="_position">The spawn position of the entity</param>
 	/// <returns>True if the entity was spawned, false otherwise</returns>
 	bool SpawnEntityAtRandomLocation(Entity* _entity, sf::Vector2f _position);
+
+	std::list<Entity*>& GetEntities() { return m_entities; }
 };
 
 #endif
