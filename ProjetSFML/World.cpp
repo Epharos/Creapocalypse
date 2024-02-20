@@ -8,6 +8,8 @@
 
 #include "BaseTurret.hpp"
 
+#include <ranges>
+
 World::World()
 {
 	// Initialize the tiles
@@ -53,7 +55,17 @@ void World::Update(float _deltaTime)
 		entity->Update(_deltaTime);
 	}
 
+	auto turrets = m_entities |
+		std::views::filter([](Entity* _entity) { return IsTurret(_entity); });
 
+	std::ranges::for_each(turrets, [](Entity* _entity) { 
+		BaseTurret* t = dynamic_cast<BaseTurret*>(_entity);
+		
+		if (t->GetTarget() != nullptr && t->GetTarget()->IsDead())
+		{
+			t->SetTarget(nullptr);
+		}
+	});
 }
 
 void World::Draw(sf::RenderWindow& _window, Camera _camera)

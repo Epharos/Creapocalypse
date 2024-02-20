@@ -59,7 +59,19 @@ public:
 	/// <returns>Returns if the entity should be rendered or not</returns>
 	bool ShouldBeRendered(Camera _camera, sf::RenderWindow& _window);
 
+	/// <param name="_other">The other entity</param>
+	/// <returns>Returns whether the entity is colliding with the other one</returns>
 	virtual bool IsColliding(Entity* _other);
+
+	/// <param name="_other">The other entity</param>
+	/// <returns>Returns whether the entity can collide with the other one</returns>
+	virtual bool CanCollideWith(Entity*& _other) { return true; }
+
+	/// <summary>
+	/// Apply the collision between the entity and the other one on this entity
+	/// </summary>
+	/// <param name="_other">The other entity</param>
+	virtual void OnCollide(Entity*& _other) { }
 };
 
 #endif

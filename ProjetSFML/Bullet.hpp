@@ -17,6 +17,10 @@ public:
 
 	bool IsDead() override;
 	void Kill() override;
+
+	bool IsColliding(Entity* _other) override;
+	bool CanCollideWith(Entity*& _other) override;
+	void OnCollide(Entity*& _other) override;
 };
 
 #endif

@@ -24,6 +24,9 @@ int main()
     TextureManager::LoadTexture("hangar", "assets/buildings/hangar.png");
     TextureManager::LoadTexture("pigfarm", "assets/buildings/pigfarm.png");
 
+    //Enemies
+    TextureManager::LoadTexture("regular", "assets/player/idle.png");
+
     GameManager* game = GameManager::GetInstance();
 
     game->Run();

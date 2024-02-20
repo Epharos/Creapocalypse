@@ -4,6 +4,7 @@
 #include "GameManager.hpp"
 #include "BaseTurret.hpp"
 #include "Bullet.hpp"
+#include "Enemy.hpp"
 
 sf::Sprite LoadSprite(const std::string _path, bool _isCentered)
 {
@@ -60,4 +61,14 @@ bool IsTurret(Entity* _entity)
 bool IsBullet(Entity* _entity)
 {
 	return dynamic_cast<Bullet*>(_entity) != nullptr;
+}
+
+bool IsEnemy(Entity* _entity)
+{
+	return dynamic_cast<Enemy*>(_entity) != nullptr;
+}
+
+bool IsLivingEntity(Entity* _entity)
+{
+	return dynamic_cast<LivingEntity*>(_entity) != nullptr;
 }

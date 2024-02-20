@@ -34,13 +34,7 @@ void Bullet::Update(float _dt)
 		{
 			if (entity->IsColliding(this))
 			{
-				if (dynamic_cast<LivingEntity*>(entity) != nullptr)
-				{
-					LivingEntity* livingEntity = dynamic_cast<LivingEntity*>(entity);
-					livingEntity->Hurt(m_damage);
-				}
-
-				Kill();
+				OnCollide(entity);
 			}
 		}
 	}
@@ -54,4 +48,25 @@ bool Bullet::IsDead()
 void Bullet::Kill()
 {
 	m_range = 0;
+}
+
+bool Bullet::IsColliding(Entity* _other)
+{
+	return Entity::IsColliding(_other) && CanCollideWith(_other);
+}
+
+bool Bullet::CanCollideWith(Entity*& _other)
+{
+	return IsLivingEntity(_other) && !IsBullet(_other) && !IsTurret(_other);
+}
+
+void Bullet::OnCollide(Entity*& _other)
+{
+	if (dynamic_cast<LivingEntity*>(_other) != nullptr)
+	{
+		LivingEntity* livingEntity = dynamic_cast<LivingEntity*>(_other);
+		livingEntity->Hurt(m_damage);
+	}
+
+	Kill();
 }

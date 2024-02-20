@@ -30,5 +30,6 @@ bool IsPlayer(Entity* _entity);
 bool IsTurret(Entity* _entity);
 bool IsBullet(Entity* _entity);
 bool IsEnemy(Entity* _entity);
+bool IsLivingEntity(Entity* _entity);
 
 #endif

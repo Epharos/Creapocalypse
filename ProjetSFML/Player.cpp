@@ -7,7 +7,9 @@ Player::Player(std::string _texturePath, sf::FloatRect _hitbox) :
 {
 	m_animation = Animation(_texturePath, sf::Vector2i(32, 64), 4, 0.1f);
 	m_speed = 5.f;
-	m_position = sf::Vector2f(125, 125);
+	sf::Vector2f pos = sf::Vector2f(20, 20);
+	SetPosition(pos);
+	m_targetPosition = m_position;
 	m_money = 100000.f;
 	m_maxHealth = 100000.f;
 	m_health = m_maxHealth;

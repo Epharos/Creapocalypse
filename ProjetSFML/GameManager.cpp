@@ -1,6 +1,7 @@
 #include "GameManager.hpp"
 
 #include "LMGTurret.hpp"
+#include "Regular.hpp"
 
 GameManager* GameManager::_INSTANCE = nullptr;
 
@@ -84,9 +85,18 @@ void GameManager::Run()
 			{
 				if (event.mouseButton.button == sf::Mouse::Right)
 				{
-					sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
-					sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
-					m_world.SpawnEntity(new LightMachineGunTurret(worldPos, 0.f));
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+					{
+						sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
+						sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
+						m_world.SpawnEntity(new LightMachineGunTurret(worldPos, 0.f));
+					}
+					else
+					{
+						sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
+						sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
+						m_world.SpawnEntity(new Regular(worldPos, "regular"));
+					}
 				}
 			}
 		}

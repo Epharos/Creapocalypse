@@ -32,14 +32,14 @@ void LightMachineGunTurret::Shoot()
 	float spread = (rand() / (float)RAND_MAX - 0.5f) * m_spread;
 	angle += spread;
 
-	sf::Vector2f bulletPos = m_position + sf::Vector2f(cos(angle), sin(angle));
+	sf::Vector2f bulletPos = m_position - sf::Vector2f(0, 22.f / TILE_SCALE) + sf::Vector2f(cos(angle), sin(angle));
 
-	GameManager::GetInstance()->GetWorld().SpawnEntity(new Bullet(bulletPos, angle, 12.f, 10.f, 24.f, "bullet"));
+	GameManager::GetInstance()->GetWorld().SpawnEntity(new Bullet(bulletPos, angle, 5.f, 10.f, 24.f, "bullet"));
 }
 
 bool LightMachineGunTurret::IsTargetValid(Entity*& _target)
 {
-	return IsPlayer(_target) && DistanceSquared(GetPosition(), _target->GetPosition()) < (m_range * m_range);
+	return IsEnemy(_target) && DistanceSquared(GetPosition(), _target->GetPosition()) < (m_range * m_range);
 }
 
 void LightMachineGunTurret::AcquireTarget(World& _world)

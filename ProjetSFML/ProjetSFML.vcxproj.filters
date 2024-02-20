@@ -126,6 +126,12 @@
     <ClCompile Include="TextureManager.cpp">
       <Filter>Fichiers sources\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Fichiers sources\Entities\Enemis</Filter>
+    </ClCompile>
+    <ClCompile Include="Regular.cpp">
+      <Filter>Fichiers sources\Entities\Enemis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp">
@@ -190,6 +196,12 @@
     </ClInclude>
     <ClInclude Include="TextureManager.hpp">
       <Filter>Fichiers d%27en-tête\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Enemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Regular.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
