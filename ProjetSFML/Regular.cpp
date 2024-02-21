@@ -11,7 +11,7 @@ Regular::Regular(sf::Vector2f _pos, std::string _texturePath)
 	m_attackSpeed = 1.f;
 	m_range = 1.f;
 
-	m_speed = .5f;
+	m_speed = 3.5f;
 	m_animation = Animation(_texturePath, sf::Vector2i(32, 64), 4, 0.1f);
 }
 
@@ -21,11 +21,8 @@ Regular::~Regular()
 
 void Regular::AcquireTarget(World& _world)
 {
-	auto entities = _world.GetEntities() |
-		std::views::filter([this](Entity* _entity) { return IsTargetValid(_entity); });
-
-	std::list<Entity*> targets;
-	targets.insert(targets.begin(), entities.begin(), entities.end());
+	std::list<Entity*> targets = std::list(_world.GetEntities());
+	targets.remove_if([this](Entity* _entity) { return !IsTargetValid(_entity); });
 
 	targets.sort([this](Entity* _a, Entity* _b)
 		{

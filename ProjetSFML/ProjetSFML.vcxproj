@@ -167,6 +167,7 @@
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="Enemy.hpp" />
+    <ClInclude Include="EnhancedList.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="GameManager.hpp" />
     <ClInclude Include="Garage.hpp" />

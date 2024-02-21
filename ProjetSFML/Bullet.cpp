@@ -3,6 +3,8 @@
 #include "World.hpp"
 #include "GameManager.hpp"
 
+#include "EnhancedList.hpp"
+
 Bullet::Bullet(sf::Vector2f _pos, float _rotation, float _speed, float _damage, float _range, std::string _texturePath)
 	: LivingEntity(_texturePath, sf::FloatRect(0, 0, 5, 5))
 {
@@ -30,12 +32,9 @@ void Bullet::Update(float _dt)
 
 	for (auto& entity : GameManager::GetInstance()->GetWorld().GetEntities())
 	{
-		if (entity != this)
+		if (entity->IsColliding(this))
 		{
-			if (entity->IsColliding(this))
-			{
-				OnCollide(entity);
-			}
+			OnCollide(entity);
 		}
 	}
 }

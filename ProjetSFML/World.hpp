@@ -7,10 +7,13 @@
 #include "Entity.hpp"
 #include "Tile.hpp"
 
+class Bullet;
+
 class World
 {
 private:
 	std::list<Entity*> m_entities;
+	std::list<Bullet*> m_bullets;
 
 	Tile* m_tiles[MAP_SIZE][MAP_SIZE] = { nullptr };
 

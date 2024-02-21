@@ -8,6 +8,8 @@
 
 #include "BaseTurret.hpp"
 
+#include "Bullet.hpp"
+
 #include <ranges>
 
 World::World()
@@ -47,7 +49,9 @@ World::~World()
 
 void World::Update(float _deltaTime)
 {
+	//TODO : modifier le remove_if pour delete les entités mortes
 	m_entities.remove_if([](Entity* _entity) { return _entity->IsDead(); });
+	m_bullets.remove_if([](Bullet* _bullet) { return _bullet->IsDead(); });
 
 	// Update all the entities
 	for (auto& entity : m_entities)
@@ -55,6 +59,13 @@ void World::Update(float _deltaTime)
 		entity->Update(_deltaTime);
 	}
 
+	// Update all the bullets
+	for (auto& bullet : m_bullets)
+	{
+		bullet->Update(_deltaTime);
+	}
+
+	//TODO : retirer les std::views::filter et std::ranges::for_each
 	auto turrets = m_entities |
 		std::views::filter([](Entity* _entity) { return IsTurret(_entity); });
 
@@ -87,17 +98,30 @@ void World::Draw(sf::RenderWindow& _window, Camera _camera)
 	{
 		entity->Draw(_window, _camera);
 	}
+
+	// Draw all the bullets
+	for (auto& bullet : m_bullets)
+	{
+		bullet->Draw(_window, _camera);
+	}
 }
 
 void World::SpawnEntity(Entity* _entity)
 {
-	m_entities.push_back(_entity);
+	if (IsBullet(_entity))
+	{
+		m_bullets.push_back(dynamic_cast<Bullet*>(_entity));
+	}
+	else
+	{
+		m_entities.push_back(_entity);
+	}
 }
 
 void World::SpawnEntity(Entity* _entity, sf::Vector2f _position)
 {
 	_entity->SetPosition(_position);
-	m_entities.push_back(_entity);
+	SpawnEntity(_entity);
 }
 
 bool World::SpawnEntityAtRandomLocation(Entity* _entity, sf::Vector2f _position)
@@ -115,7 +139,7 @@ bool World::SpawnEntityAtRandomLocation(Entity* _entity, sf::Vector2f _position)
 		}
 	}
 
-	m_entities.push_back(_entity);
+	SpawnEntity(_entity);
 	return true;
 }
 

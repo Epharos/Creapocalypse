@@ -44,12 +44,8 @@ bool LightMachineGunTurret::IsTargetValid(Entity*& _target)
 
 void LightMachineGunTurret::AcquireTarget(World& _world)
 {
-	auto entities = _world.GetEntities() |
-		std::views::filter([this](Entity* _entity) { return IsTargetValid(_entity); });
-
-	std::list<Entity*> targets;
-	targets.resize(std::distance(entities.begin(), entities.end()));
-	std::copy(entities.begin(), entities.end(), targets.begin());
+	std::list<Entity*> targets = std::list(_world.GetEntities());
+	targets.remove_if([this](Entity* _entity) { return !IsTargetValid(_entity); });
 
 	targets.sort([this](Entity* _a, Entity* _b)
 		{
