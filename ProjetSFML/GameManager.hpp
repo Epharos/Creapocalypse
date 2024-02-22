@@ -6,6 +6,7 @@
 #include "Camera.hpp"
 #include "Player.hpp"
 #include "TextRenderer.hpp"
+#include "BaseUI.hpp"
 
 class GameManager
 {
@@ -14,6 +15,7 @@ private:
     World m_world;
     Camera m_camera;
     Player* m_player;
+    BaseUI* m_currentUI = nullptr;
 
     sf::Clock m_clock;
     float m_deltaTime;
@@ -45,6 +47,7 @@ public:
     World& GetWorld() { return m_world; }
     Camera& GetCamera() { return m_camera; }
     Player*& GetPlayer() { return m_player; }
+    BaseUI*& GetCurrentUI() { return m_currentUI; }
     bool GetDebugMode() { return m_debugMode; }
     int GetWave() { return m_wave; }
     TextRenderer& GetTextRenderer() { return m_textRenderer; }

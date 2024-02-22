@@ -61,6 +61,12 @@
     <Filter Include="Fichiers sources\Entities\Enemis">
       <UniqueIdentifier>{ffc4b78b-0c9b-4750-b09a-0dd1a2dfe906}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\UI">
+      <UniqueIdentifier>{8118cfed-09fd-4e80-9295-5f4a9b271420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\UI">
+      <UniqueIdentifier>{ac11c978-2494-4dac-bf7d-e65d099d9701}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -132,6 +138,15 @@
     <ClCompile Include="Regular.cpp">
       <Filter>Fichiers sources\Entities\Enemis</Filter>
     </ClCompile>
+    <ClCompile Include="BaseUI.cpp">
+      <Filter>Fichiers sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TurretSelector.cpp">
+      <Filter>Fichiers sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TurretSelection.cpp">
+      <Filter>Fichiers sources\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp">
@@ -200,10 +215,25 @@
     <ClInclude Include="Enemy.hpp">
       <Filter>Fichiers d%27en-tête\Entities\Enemis</Filter>
     </ClInclude>
-    <ClInclude Include="Regular.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="BaseUI.hpp">
+      <Filter>Fichiers d%27en-tête\UI</Filter>
     </ClInclude>
     <ClInclude Include="EnhancedList.hpp">
+      <Filter>Fichiers d%27en-tête\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Regular.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Enemis</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.hpp">
+      <Filter>Fichiers d%27en-tête\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TurretSelection.hpp">
+      <Filter>Fichiers d%27en-tête\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TurretSelector.hpp">
+      <Filter>Fichiers d%27en-tête\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,22 @@ using Filter = bool(*)(T);
 
 template <class T>
 using Map = void(*)(T&);
+	
+template <class F, class V>
+struct Where
+{
+	F m_filter;
+	Where(F _f) : m_filter(_f) {}
+	bool operator()(const V& _v) { return m_filter(_v); }
+};
+
+template <class M, class V>
+struct Then
+{
+	M m_map;
+	Then(M _m) : m_map(_m) {}
+	void operator()(V& _v) { m_map(_v); }
+};
 
 template <class T>
 class EnhancedList

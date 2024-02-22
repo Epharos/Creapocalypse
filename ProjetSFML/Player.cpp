@@ -30,18 +30,25 @@ void Player::Update(float _dt)
 		}
 	}
 
-	if (DistanceSquared(m_position, m_targetPosition) > .01f)
+	if (m_state != Crafting)
 	{
-		m_state = Moving;
-		sf::Vector2f dir = m_targetPosition - m_position;
-		dir = Normalize(dir) * m_speed;
-		sf::Vector2f newPos = m_position + dir * _dt;
-		SetPosition(newPos);
-		m_yaw = atan2(dir.y, dir.x) + 3.1415;
+		if (DistanceSquared(m_position, m_targetPosition) > .01f)
+		{
+			m_state = Moving;
+			sf::Vector2f dir = m_targetPosition - m_position;
+			dir = Normalize(dir) * m_speed;
+			sf::Vector2f newPos = m_position + dir * _dt;
+			SetPosition(newPos);
+			m_yaw = atan2(dir.y, dir.x) + 3.1415;
+		}
+		else
+		{
+			m_state = Idle;
+		}
 	}
 	else
 	{
-		m_state = Idle;
+		m_targetPosition = m_position;
 	}
 }
 

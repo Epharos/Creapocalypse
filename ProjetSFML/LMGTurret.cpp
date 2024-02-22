@@ -18,6 +18,13 @@ LightMachineGunTurret::LightMachineGunTurret(sf::Vector2f _pos, float _rotation)
 	m_health = m_maxHealth;
 	m_animation = Animation("lmg", sf::Vector2i(102, 72), 4, 0.6f);
 	m_spawingAnimation.Once();
+
+	m_turretName = "Light Machine Gun Turret";
+	m_turretDescription = "A fast firing turret with a wide spread. Perfect for crowd control.";
+
+	m_bulletDamage = 10.f;
+	m_bulletSpeed = 12.f;
+	m_bulletRange = 24.f;
 }
 
 void LightMachineGunTurret::Shoot()
@@ -34,7 +41,7 @@ void LightMachineGunTurret::Shoot()
 
 	sf::Vector2f bulletPos = m_position - sf::Vector2f(0, 22.f / TILE_SCALE) + sf::Vector2f(cos(angle), sin(angle));
 
-	GameManager::GetInstance()->GetWorld().SpawnEntity(new Bullet(bulletPos, angle, 5.f, 10.f, 24.f, "bullet"));
+	GameManager::GetInstance()->GetWorld().SpawnEntity(new Bullet(bulletPos, angle, m_bulletSpeed, m_bulletDamage, m_bulletRange, "bullet"));
 }
 
 bool LightMachineGunTurret::IsTargetValid(Entity*& _target)

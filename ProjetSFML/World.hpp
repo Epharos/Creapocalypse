@@ -58,6 +58,7 @@ public:
 	bool SpawnEntityAtRandomLocation(Entity* _entity, sf::Vector2f _position);
 
 	std::list<Entity*>& GetEntities() { return m_entities; }
+	std::list<Bullet*>& GetBullets() { return m_bullets; }
 };
 
 #endif

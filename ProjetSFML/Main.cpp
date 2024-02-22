@@ -27,6 +27,10 @@ int main()
     //Enemies
     TextureManager::LoadTexture("regular", "assets/player/idle.png");
 
+    //UI
+    TextureManager::LoadTexture("turretScreen", "assets/ui/turretScreen.png");
+    TextureManager::LoadTexture("turretSelector", "assets/ui/turretSelector.png");
+
     GameManager* game = GameManager::GetInstance();
 
     game->Run();

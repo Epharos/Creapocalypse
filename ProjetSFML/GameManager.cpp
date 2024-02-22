@@ -3,6 +3,8 @@
 #include "LMGTurret.hpp"
 #include "Regular.hpp"
 
+#include "TurretSelection.hpp"
+
 GameManager* GameManager::_INSTANCE = nullptr;
 
 GameManager* GameManager::GetInstance()
@@ -38,6 +40,11 @@ void GameManager::Update()
 	}
 
 	m_world.Update(m_deltaTime);
+
+	if (m_currentUI != nullptr)
+	{
+		m_currentUI->Update(m_deltaTime);
+	}
 }
 
 void GameManager::Draw()
@@ -50,6 +57,13 @@ void GameManager::Draw()
 	{
 		m_textRenderer.RenderText(m_window, "FPS: " + std::to_string(static_cast<int>(1.f / m_deltaTime)), sf::Vector2f(10, 10), 16, sf::Color::Yellow);
 		m_textRenderer.RenderText(m_window, "Camera position: " + std::to_string(m_camera.GetPosition().x) + ", " + std::to_string(m_camera.GetPosition().y), sf::Vector2f(10, 30), 16, sf::Color::Yellow);
+		m_textRenderer.RenderText(m_window, "Entity count: " + std::to_string(m_world.GetEntities().size()), sf::Vector2f(10, 50), 16, sf::Color::Yellow);
+		m_textRenderer.RenderText(m_window, "Bullet count: " + std::to_string(m_world.GetBullets().size()), sf::Vector2f(10, 70), 16, sf::Color::Yellow);
+	}
+
+	if (m_currentUI != nullptr)
+	{
+		m_currentUI->Draw(m_window);
 	}
 
 	m_window.display();
@@ -79,6 +93,15 @@ void GameManager::Run()
 					m_debugMode = !m_debugMode;
 					std::cout << "Debug mode: " << (m_debugMode ? "ON" : "OFF") << std::endl;
 				}
+
+				if (event.key.code == sf::Keyboard::C)
+				{
+					if (m_currentUI == nullptr)
+					{
+						m_currentUI = new TurretSelection();
+						m_player->SetState(PlayerState::Crafting);
+					}
+				}
 			}
 
 			if (event.type == sf::Event::MouseButtonPressed)
@@ -97,6 +120,12 @@ void GameManager::Run()
 						sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
 						m_world.SpawnEntity(new Regular(worldPos, "regular"));
 					}
+				}
+
+				if (m_currentUI != nullptr)
+				{
+					sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
+					m_currentUI->OnClick(mousePos);
 				}
 			}
 		}

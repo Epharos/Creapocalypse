@@ -137,6 +137,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Barn.cpp" />
     <ClCompile Include="BaseTurret.cpp" />
+    <ClCompile Include="BaseUI.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Common.cpp" />
@@ -156,12 +157,19 @@
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClInclude Include="Label.hpp" />
+    <ClInclude Include="TurretSelection.hpp" />
+    <ClInclude Include="TurretSelector.hpp" />
+    <ClInclude Include="Widget.hpp" />
+    <ClCompile Include="TurretSelection.cpp" />
+    <ClCompile Include="TurretSelector.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.hpp" />
     <ClInclude Include="Barn.hpp" />
     <ClInclude Include="BaseTurret.hpp" />
+    <ClInclude Include="BaseUI.hpp" />
     <ClInclude Include="Building.hpp" />
     <ClInclude Include="Bullet.hpp" />
     <ClInclude Include="Camera.hpp" />
