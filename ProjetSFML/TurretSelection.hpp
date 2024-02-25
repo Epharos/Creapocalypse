@@ -17,6 +17,8 @@ public:
 	void Draw(sf::RenderWindow& _window) override;
 	void OnClick(sf::Vector2i _mousePos) override;
 
+	TurretSelector* GetSelectedTurret() { return m_selectedTurret; }
+
 	friend class TurretSelector;
 };
 

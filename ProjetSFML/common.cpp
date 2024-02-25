@@ -6,6 +6,9 @@
 #include "Bullet.hpp"
 #include "Enemy.hpp"
 
+#include "TurretSelection.hpp"
+#include "TurretSelector.hpp"
+
 sf::Sprite LoadSprite(const std::string _path, bool _isCentered)
 {
 	//Création et chargement de la texture
@@ -71,4 +74,26 @@ bool IsEnemy(Entity* _entity)
 bool IsLivingEntity(Entity* _entity)
 {
 	return dynamic_cast<LivingEntity*>(_entity) != nullptr;
+}
+
+void BuyTurret()
+{
+	BaseUI* ui = GameManager::GetInstance()->GetCurrentUI();
+
+	if (ui != nullptr)
+	{
+		TurretSelection* turretSelection = dynamic_cast<TurretSelection*>(ui);
+
+		if (turretSelection != nullptr)
+		{
+			if (turretSelection->GetSelectedTurret() != nullptr)
+			{
+				GameManager* game = GameManager::GetInstance();
+
+				turretSelection->GetSelectedTurret()->GetTurret()->SetState(TurretState::Placeholder);
+				game->GetPlayer()->SetState(PlayerState::Placing);
+				game->GetPlayer()->SetPlacingTurret(turretSelection->GetSelectedTurret()->GetTurret());
+			}
+		}
+	}
 }

@@ -18,9 +18,14 @@ protected:
 public:
 	BaseUI(sf::Vector2f _position, sf::Vector2f _size, std::string _texture) : m_position(_position), m_size(_size)
 	{
-		m_background.setTexture(*TextureManager::GetTexture(_texture));
-		m_background.setPosition(m_position);
+		if(!_texture.empty())
+		{
+			m_background.setTexture(*TextureManager::GetTexture(_texture));
+			m_background.setPosition(m_position);
+		}
 	}
+
+	virtual ~BaseUI();
 
 	virtual void Update(float _dt);
 	virtual void Draw(sf::RenderWindow& _window);
@@ -28,9 +33,7 @@ public:
 
 	void AddWidget(Widget* _widget);
 
-	void Close();
-
-	bool IsHovered(sf::Vector2i _mousePos) { return m_background.getGlobalBounds().contains((sf::Vector2f)_mousePos); }
+	bool IsHovered(sf::Vector2i _mousePos);
 
 	std::list<Widget*>& GetWidgets() { return m_widgets; }
 };

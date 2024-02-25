@@ -120,6 +120,10 @@ void LightMachineGunTurret::Draw(sf::RenderWindow& _window, Camera _camera)
 			break;
 		case TurretState::Dying:
 			break;
+		case TurretState::Placeholder:
+			m_animation.GetSprite().setColor(!IsPlaceable(GameManager::GetInstance()->GetPlayer(), GameManager::GetInstance()->GetWorld()) ? sf::Color::Red : sf::Color::Blue);
+			m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
+			break;
 		default:
 			m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
 			break;
@@ -130,4 +134,9 @@ void LightMachineGunTurret::SetPosition(sf::Vector2f& _pos)
 {
 	BaseTurret::SetPosition(_pos);
 	m_hitbox.top = m_position.y - 44.f / TILE_SCALE;
+}
+
+BaseTurret* LightMachineGunTurret::Clone()
+{
+	return new LightMachineGunTurret(m_position, m_yaw);
 }

@@ -1,4 +1,5 @@
 #include "TurretSelector.hpp"
+#include "GameManager.hpp"
 
 TurretSelector::TurretSelector(sf::Vector2f _position, TurretSelection* _parent) : Widget(_position, sf::Vector2f(132, 174), "turretSelector"), m_parent(_parent)
 {
@@ -7,7 +8,10 @@ TurretSelector::TurretSelector(sf::Vector2f _position, TurretSelection* _parent)
 
 TurretSelector::~TurretSelector()
 {
-	delete m_turret;
+	if (GameManager::GetInstance()->GetPlayer()->GetPlacingTurret() != m_turret)
+	{
+		delete m_turret;
+	}
 }
 
 void TurretSelector::SetTurretSprite(std::string _texture)

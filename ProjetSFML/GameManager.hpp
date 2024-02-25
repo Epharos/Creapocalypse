@@ -28,11 +28,16 @@ private:
 
     static GameManager* _INSTANCE;
 
+    sf::Sprite heartSprite;
+    sf::Sprite diamantumSprite;
+
     GameManager() : 
         m_window(sf::VideoMode(1920, 1080), "Creapocalypse"), m_world(), m_camera(), m_clock(),
         m_deltaTime(.0f), m_player(new Player("player", sf::FloatRect(0.f, 0.f, 32.f, 64.f)))
     {
         m_world.SpawnEntity(m_player);
+        heartSprite = LoadSprite("assets/ui/heart.png", false);
+        diamantumSprite = LoadSprite("assets/ui/diamantum.png", false);
     };
 
 public:
@@ -51,6 +56,17 @@ public:
     bool GetDebugMode() { return m_debugMode; }
     int GetWave() { return m_wave; }
     TextRenderer& GetTextRenderer() { return m_textRenderer; }
+
+    /// <summary>
+    /// Close the current opened UI
+    /// </summary>
+    void CloseUI();
+
+    /// <summary>
+    /// Close the current opened UI (if any) and then open a new UI
+    /// </summary>
+    /// <param name="_ui">The UI to open</param>
+    void OpenUI(BaseUI* _ui);
 
     /// <summary>
     /// Updates the game every frame

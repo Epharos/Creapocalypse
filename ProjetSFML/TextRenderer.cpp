@@ -9,11 +9,7 @@ TextRenderer::TextRenderer()
 
 void TextRenderer::RenderText(sf::RenderWindow& _window, std::string _text, sf::Vector2f _position, int _size, sf::Color _color)
 {
-	sf::Text text;
-	text.setFont(m_pixelFont);
-	text.setString(_text);
-	text.setCharacterSize(_size);
-	text.setFillColor(_color);
+	sf::Text text = CreateText(_text, _size, _color);
 	text.setPosition(_position);
 
 	_window.draw(text);
@@ -21,11 +17,7 @@ void TextRenderer::RenderText(sf::RenderWindow& _window, std::string _text, sf::
 
 void TextRenderer::RenderText(sf::RenderWindow& _window, std::string _text, sf::Vector2f _position, int _size, sf::Color _color, sf::Text::Style _style)
 {
-	sf::Text text;
-	text.setFont(m_pixelFont);
-	text.setString(_text);
-	text.setCharacterSize(_size);
-	text.setFillColor(_color);
+	sf::Text text = CreateText(_text, _size, _color);
 	text.setStyle(_style);
 	text.setPosition(_position);
 
@@ -38,11 +30,7 @@ void TextRenderer::RenderText(sf::RenderWindow& _window, std::vector<Text> _text
 
 	for (int i = 0; i < _texts.size(); i++)
 	{
-		sf::Text text;
-		text.setFont(m_pixelFont);
-		text.setString(_texts[i].m_text);
-		text.setCharacterSize(_size);
-		text.setFillColor(_texts[i].m_color);
+		sf::Text text = CreateText(_texts[i].m_text, _size, _texts[i].m_color);
 		text.setPosition(_position.x + prevTextSize, _position.y);
 		text.setStyle(_texts[i].m_style);
 		prevTextSize += text.getLocalBounds().width;
@@ -100,4 +88,15 @@ std::string TextRenderer::FloatToString(float _value, int _precision)
 	std::stringstream stream;
 	stream << std::fixed << std::setprecision(_precision) << _value;
 	return stream.str();
+}
+
+sf::Text TextRenderer::CreateText(std::string _text, int _size, sf::Color _color)
+{
+	sf::Text text;
+	text.setFont(m_pixelFont);
+	text.setString(_text);
+	text.setCharacterSize(_size);
+	text.setFillColor(_color);
+
+	return text;
 }

@@ -13,18 +13,23 @@ protected:
 	TurretSelection* m_parent;
 	BaseTurret* m_turret = nullptr;
 
-	public:
-		TurretSelector(sf::Vector2f _position, TurretSelection* _parent);
-		~TurretSelector();
+public:
+	TurretSelector(sf::Vector2f _position, TurretSelection* _parent);
+	~TurretSelector();
 
-		void SetTurretSprite(std::string _texture);
-		void SetTurret(BaseTurret* _turret) { m_turret = _turret; }
+	void SetTurretSprite(std::string _texture);
+	void SetTurret(BaseTurret* _turret) { m_turret = _turret; }
 
-		void Update(float _dt) override;
-		void Draw(sf::RenderWindow& _window) override;
-		void OnClick(sf::Vector2i _mousePos) override;
+	void Update(float _dt) override;
+	void Draw(sf::RenderWindow& _window) override;
+	void OnClick(sf::Vector2i _mousePos) override;
 
-		friend class TurretSelection;
+	void SetActive(bool _active) { m_active = _active; }
+	bool IsActive() { return m_active; }
+
+	BaseTurret* GetTurret() { return m_turret; }
+
+	friend class TurretSelection;
 };
 
 #endif

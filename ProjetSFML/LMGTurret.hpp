@@ -20,6 +20,8 @@ public:
 	void Draw(sf::RenderWindow& _window, Camera _camera) override;
 
 	void SetPosition(sf::Vector2f& _pos) override;
+
+	BaseTurret* Clone() override;
 };
 
 #endif

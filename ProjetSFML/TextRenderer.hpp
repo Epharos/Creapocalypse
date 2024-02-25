@@ -25,6 +25,8 @@ public:
 
 	void RenderTextMultiline(sf::RenderWindow& _window, std::string _text, sf::Vector2f _position, int _size, sf::Color _color, int _maxWidth);
 
+	sf::Text CreateText(std::string _text, int _size, sf::Color _color);
+
 	std::string FloatToString(float _value, int _precision = 2);
 };
 

@@ -1,8 +1,11 @@
 #include "TurretSelection.hpp"
 #include "GameManager.hpp"
 #include "TurretSelector.hpp"
+#include "Label.hpp"
 
 #include "LMGTurret.hpp"
+
+#include <functional>
 
 TurretSelection::TurretSelection() : BaseUI(sf::Vector2f(GameManager::GetInstance()->GetWindow().getSize().x / 2 - 384
 	, GameManager::GetInstance()->GetWindow().getSize().y / 2 - 388), sf::Vector2f(768, 576), "turretScreen")
@@ -11,7 +14,14 @@ TurretSelection::TurretSelection() : BaseUI(sf::Vector2f(GameManager::GetInstanc
 	lmgSelector->SetTurretSprite("lmg");
 	lmgSelector->SetTurret(new LightMachineGunTurret(sf::Vector2f(0, 0), 0.f));
 	lmgSelector->m_active = true;
+	m_selectedTurret = lmgSelector;
 	AddWidget(lmgSelector);
+
+	Label* placingLabel = new Label(sf::Vector2f(
+		this->m_position.x + this->m_size.x - GameManager::GetInstance()->GetTextRenderer().CreateText("Buy >", 24, sf::Color::White).getGlobalBounds().width - 16,
+		this->m_position.y + this->m_size.y - GameManager::GetInstance()->GetTextRenderer().CreateText("Buy >", 24, sf::Color::White).getGlobalBounds().height - 16),
+		"Buy >", BuyTurret);
+	AddWidget(placingLabel);
 }
 
 TurretSelection::~TurretSelection()

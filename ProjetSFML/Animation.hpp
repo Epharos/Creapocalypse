@@ -47,6 +47,9 @@ public:
 	/// <returns>Returns the size of the frame</returns>
 	sf::Vector2i GetFrameSize() const { return m_frameSize; }
 
+	/// <returns>Returns the sprite reference of the animation</returns>
+	sf::Sprite& GetSprite() { return m_sprite; }
+
 	/// <returns>Returns whether the animation is finished or not</returns>
 	bool IsDone() const { return m_once && m_currentFrame == m_numFrames; }
 };

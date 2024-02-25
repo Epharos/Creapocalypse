@@ -39,6 +39,9 @@ void GameManager::Update()
 		m_camera.Move(sf::Vector2f(1.f, 0.f), m_deltaTime);
 	}
 
+	m_player->RealTimeKeyboardInput();
+	m_player->RealTimeMouseInput(sf::Mouse::getPosition(m_window));
+
 	m_world.Update(m_deltaTime);
 
 	if (m_currentUI != nullptr)
@@ -61,8 +64,17 @@ void GameManager::Draw()
 		m_textRenderer.RenderText(m_window, "Bullet count: " + std::to_string(m_world.GetBullets().size()), sf::Vector2f(10, 70), 16, sf::Color::Yellow);
 	}
 
+	BlitSprite(heartSprite, sf::Vector2f(16, m_window.getSize().y - 48), 0.f, m_window);
+	m_textRenderer.RenderText(m_window, m_textRenderer.FloatToString(m_player->GetHealth(), 1), sf::Vector2f(48, m_window.getSize().y - 48), 16, sf::Color::White);
+	BlitSprite(diamantumSprite, sf::Vector2f(16, m_window.getSize().y - 80), 0.f, m_window);
+	m_textRenderer.RenderText(m_window, m_textRenderer.FloatToString(m_player->GetMoney(), 1), sf::Vector2f(48, m_window.getSize().y - 80), 16, sf::Color::White);
+
 	if (m_currentUI != nullptr)
 	{
+		sf::RectangleShape background(sf::Vector2f(m_window.getSize().x, m_window.getSize().y));
+		background.setFillColor(sf::Color(0, 0, 0, 100));
+		m_window.draw(background);
+
 		m_currentUI->Draw(m_window);
 	}
 
@@ -83,9 +95,18 @@ void GameManager::Run()
 
 			if (event.type == sf::Event::KeyPressed)
 			{
+				m_player->EventKeyboardInput(event.key.code, event.key);
+
 				if (event.key.code == sf::Keyboard::Escape)
 				{
-					m_window.close();
+					if (m_currentUI != nullptr)
+					{
+						CloseUI();
+					}
+					else
+					{
+						m_window.close();
+					}
 				}
 
 				if (event.key.code == sf::Keyboard::F1)
@@ -94,33 +115,15 @@ void GameManager::Run()
 					std::cout << "Debug mode: " << (m_debugMode ? "ON" : "OFF") << std::endl;
 				}
 
-				if (event.key.code == sf::Keyboard::C)
+				if (event.key.code == sf::Keyboard::F2)
 				{
-					if (m_currentUI == nullptr)
-					{
-						m_currentUI = new TurretSelection();
-						m_player->SetState(PlayerState::Crafting);
-					}
+					m_player->Hurt(10);
 				}
 			}
 
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				if (event.mouseButton.button == sf::Mouse::Right)
-				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
-					{
-						sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
-						sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
-						m_world.SpawnEntity(new LightMachineGunTurret(worldPos, 0.f));
-					}
-					else
-					{
-						sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
-						sf::Vector2f worldPos = m_camera.ScreenToWorld(sf::Vector2f(mousePos));
-						m_world.SpawnEntity(new Regular(worldPos, "regular"));
-					}
-				}
+				m_player->EventMouseInput(event.mouseButton.button, sf::Mouse::getPosition(m_window));
 
 				if (m_currentUI != nullptr)
 				{
@@ -133,4 +136,20 @@ void GameManager::Run()
 		Update();
 		Draw();
 	}
+}
+
+void GameManager::CloseUI()
+{
+	if (m_currentUI != nullptr)
+	{
+		delete m_currentUI;
+		m_currentUI = nullptr;
+	}
+}
+
+void GameManager::OpenUI(BaseUI* _ui)
+{
+	CloseUI();
+
+	m_currentUI = _ui;
 }

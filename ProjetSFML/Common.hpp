@@ -32,4 +32,6 @@ bool IsBullet(Entity* _entity);
 bool IsEnemy(Entity* _entity);
 bool IsLivingEntity(Entity* _entity);
 
+void BuyTurret();
+
 #endif

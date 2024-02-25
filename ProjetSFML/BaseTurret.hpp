@@ -11,7 +11,8 @@ enum TurretState
 	Spawning,
 	Searching,
 	Shooting,
-	Dying
+	Dying,
+	Placeholder
 };
 
 class BaseTurret : public LivingEntity
@@ -20,21 +21,20 @@ protected:
 	float m_range; 
 	float m_fireRate; //bullets per second
 	float m_spread; //accuracy as radians
+	float m_cost;
 
 	float m_bulletDamage;
 	float m_bulletSpeed;
 	float m_bulletRange;
+	float m_fireTimer;
 
 	std::string m_turretName;
 	std::string m_turretDescription;
 
-	float m_cost;
-
 	Entity* m_target;
 
-	float m_fireTimer;
-
 	TurretState m_state;
+
 public:
 	BaseTurret(sf::Vector2f _pos, float _rotation, float _range, float _fireRate, float _spread);
 
@@ -59,6 +59,11 @@ public:
 	float GetBulletRange() { return m_bulletRange; }
 
 	Entity* GetTarget() { return m_target; }
+
+	TurretState GetState() { return m_state; }
+	void SetState(TurretState _state) { m_state = _state; }
+
+	virtual BaseTurret* Clone() = 0;
 };
 
 #endif

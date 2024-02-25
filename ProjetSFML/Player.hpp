@@ -23,7 +23,7 @@ private:
 	sf::Vector2f m_targetPosition;
 
 	float m_money;
-	BaseTurret* m_selectedTurret = nullptr;
+	BaseTurret* m_placingTurret = nullptr;
 
 public:
 	Player(std::string _texturePath, sf::FloatRect _hitbox);
@@ -31,9 +31,15 @@ public:
 	virtual void Update(float _dt) override;
 	virtual void Draw(sf::RenderWindow& _window, Camera _camera) override;
 
+	void RealTimeKeyboardInput();
+	void RealTimeMouseInput(sf::Vector2i _mousePos);
+
+	void EventKeyboardInput(sf::Keyboard::Key _key, sf::Event::KeyEvent _event);
+	void EventMouseInput(sf::Mouse::Button _button, sf::Vector2i _mousePos);
+
 	float& GetMoney() { return m_money; }
-	BaseTurret* GetSelectedTurret() { return m_selectedTurret; }
-	void SetSelectedTurret(BaseTurret* _turret) { m_selectedTurret = _turret; }
+	BaseTurret* GetPlacingTurret() { return m_placingTurret; }
+	void SetPlacingTurret(BaseTurret* _turret) { m_placingTurret = _turret; }
 
 	void SetState(PlayerState _state) { m_state = _state; }
 	PlayerState GetState() { return m_state; }

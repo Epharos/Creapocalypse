@@ -67,6 +67,12 @@
     <Filter Include="Fichiers sources\UI">
       <UniqueIdentifier>{ac11c978-2494-4dac-bf7d-e65d099d9701}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\UI\Widget">
+      <UniqueIdentifier>{895f4783-7226-48f4-ac4d-c0f69c7bc54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\UI\Widget">
+      <UniqueIdentifier>{0774f9cd-0687-4e07-a4ff-958ca0bf794a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -141,11 +147,14 @@
     <ClCompile Include="BaseUI.cpp">
       <Filter>Fichiers sources\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TurretSelector.cpp">
-      <Filter>Fichiers sources\UI</Filter>
-    </ClCompile>
     <ClCompile Include="TurretSelection.cpp">
       <Filter>Fichiers sources\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TurretSelector.cpp">
+      <Filter>Fichiers sources\UI\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>Fichiers sources\UI\Widget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,17 +233,17 @@
     <ClInclude Include="Regular.hpp">
       <Filter>Fichiers d%27en-tête\Entities\Enemis</Filter>
     </ClInclude>
-    <ClInclude Include="Widget.hpp">
-      <Filter>Fichiers d%27en-tête\UI</Filter>
-    </ClInclude>
     <ClInclude Include="TurretSelection.hpp">
       <Filter>Fichiers d%27en-tête\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Widget.hpp">
+      <Filter>Fichiers d%27en-tête\UI\Widget</Filter>
+    </ClInclude>
     <ClInclude Include="TurretSelector.hpp">
-      <Filter>Fichiers d%27en-tête\UI</Filter>
+      <Filter>Fichiers d%27en-tête\UI\Widget</Filter>
     </ClInclude>
     <ClInclude Include="Label.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\UI\Widget</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

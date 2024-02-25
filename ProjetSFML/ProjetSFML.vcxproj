@@ -147,6 +147,7 @@
     <ClCompile Include="Garage.cpp" />
     <ClCompile Include="Hangar.cpp" />
     <ClCompile Include="House.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="LivingEntity.cpp" />
     <ClCompile Include="LMGTurret.cpp" />
     <ClCompile Include="Main.cpp" />
