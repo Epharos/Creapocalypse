@@ -1,6 +1,6 @@
 #include "TurretSelection.hpp"
 #include "GameManager.hpp"
-#include "TurretSelector.hpp"
+#include "TurretTab.hpp"
 #include "Label.hpp"
 
 #include "LMGTurret.hpp"
@@ -10,7 +10,7 @@
 TurretSelection::TurretSelection() : BaseUI(sf::Vector2f(GameManager::GetInstance()->GetWindow().getSize().x / 2 - 384
 	, GameManager::GetInstance()->GetWindow().getSize().y / 2 - 388), sf::Vector2f(768, 576), "turretScreen")
 {
-	TurretSelector* lmgSelector = new TurretSelector(sf::Vector2f(this->m_position.x + 10, this->m_position.y + this->m_size.y), this);
+	TurretTab* lmgSelector = new TurretTab(sf::Vector2f(this->m_position.x + 10, this->m_position.y + this->m_size.y), this);
 	lmgSelector->SetTurretSprite("lmg");
 	lmgSelector->SetTurret(new LightMachineGunTurret(sf::Vector2f(0, 0), 0.f));
 	lmgSelector->m_active = true;

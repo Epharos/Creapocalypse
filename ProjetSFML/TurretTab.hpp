@@ -1,11 +1,11 @@
-#ifndef TURRETSELECTOR_HPP
-#define TURRETSELECTOR_HPP
+#ifndef TURRETTAB_HPP
+#define TURRETTAB_HPP
 
 #include "Widget.hpp"
 #include "TurretSelection.hpp"
 #include "BaseTurret.hpp"
 
-class TurretSelector : public Widget
+class TurretTab : public Widget
 {
 protected:
 	bool m_active = false;
@@ -14,8 +14,8 @@ protected:
 	BaseTurret* m_turret = nullptr;
 
 public:
-	TurretSelector(sf::Vector2f _position, TurretSelection* _parent);
-	~TurretSelector();
+	TurretTab(sf::Vector2f _position, TurretSelection* _parent);
+	~TurretTab();
 
 	void SetTurretSprite(std::string _texture);
 	void SetTurret(BaseTurret* _turret) { m_turret = _turret; }

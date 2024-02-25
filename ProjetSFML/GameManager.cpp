@@ -48,6 +48,15 @@ void GameManager::Update()
 	{
 		m_currentUI->Update(m_deltaTime);
 	}
+
+	m_currentWave->Update(m_deltaTime);
+
+	if (m_currentWave->IsWaveActive() && m_currentWave->IsWaveComplete())
+	{
+		Wave* nextWave = m_currentWave->CreateNextWave();
+		delete m_currentWave;
+		m_currentWave = nextWave;
+	}
 }
 
 void GameManager::Draw()
@@ -64,10 +73,12 @@ void GameManager::Draw()
 		m_textRenderer.RenderText(m_window, "Bullet count: " + std::to_string(m_world.GetBullets().size()), sf::Vector2f(10, 70), 16, sf::Color::Yellow);
 	}
 
-	BlitSprite(heartSprite, sf::Vector2f(16, m_window.getSize().y - 48), 0.f, m_window);
-	m_textRenderer.RenderText(m_window, m_textRenderer.FloatToString(m_player->GetHealth(), 1), sf::Vector2f(48, m_window.getSize().y - 48), 16, sf::Color::White);
+	BlitSprite(heartSprite, sf::Vector2f(16, m_window.getSize().y - 56), 0.f, m_window);
+	m_textRenderer.RenderText(m_window, m_textRenderer.FloatToString(m_player->GetHealth(), 1), sf::Vector2f(48, m_window.getSize().y - 56), 16, sf::Color::White);
 	BlitSprite(diamantumSprite, sf::Vector2f(16, m_window.getSize().y - 80), 0.f, m_window);
 	m_textRenderer.RenderText(m_window, m_textRenderer.FloatToString(m_player->GetMoney(), 1), sf::Vector2f(48, m_window.getSize().y - 80), 16, sf::Color::White);
+
+	m_currentWave->Render(m_window);
 
 	if (m_currentUI != nullptr)
 	{

@@ -160,10 +160,12 @@
     <ClCompile Include="Tile.cpp" />
     <ClInclude Include="Label.hpp" />
     <ClInclude Include="TurretSelection.hpp" />
-    <ClInclude Include="TurretSelector.hpp" />
+    <ClInclude Include="TurretTab.hpp" />
+    <ClInclude Include="Wave.hpp" />
     <ClInclude Include="Widget.hpp" />
     <ClCompile Include="TurretSelection.cpp" />
-    <ClCompile Include="TurretSelector.cpp" />
+    <ClCompile Include="TurretTab.cpp" />
+    <ClCompile Include="Wave.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>

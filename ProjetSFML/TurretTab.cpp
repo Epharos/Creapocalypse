@@ -1,12 +1,12 @@
-#include "TurretSelector.hpp"
+#include "TurretTab.hpp"
 #include "GameManager.hpp"
 
-TurretSelector::TurretSelector(sf::Vector2f _position, TurretSelection* _parent) : Widget(_position, sf::Vector2f(132, 174), "turretSelector"), m_parent(_parent)
+TurretTab::TurretTab(sf::Vector2f _position, TurretSelection* _parent) : Widget(_position, sf::Vector2f(132, 174), "turretTab"), m_parent(_parent)
 {
 	
 }
 
-TurretSelector::~TurretSelector()
+TurretTab::~TurretTab()
 {
 	if (GameManager::GetInstance()->GetPlayer()->GetPlacingTurret() != m_turret)
 	{
@@ -14,19 +14,19 @@ TurretSelector::~TurretSelector()
 	}
 }
 
-void TurretSelector::SetTurretSprite(std::string _texture)
+void TurretTab::SetTurretSprite(std::string _texture)
 {
 	m_turretSprite.setTexture(*TextureManager::GetTexture(_texture));
 	m_turretSprite.setTextureRect(sf::IntRect(29, 26, 40, 46));
 	m_turretSprite.setScale(3, 3);
 }
 
-void TurretSelector::Update(float _dt)
+void TurretTab::Update(float _dt)
 {
 	Widget::Update(_dt);
 }
 
-void TurretSelector::Draw(sf::RenderWindow& _window)
+void TurretTab::Draw(sf::RenderWindow& _window)
 {
 	if (m_active)
 	{
@@ -43,11 +43,11 @@ void TurretSelector::Draw(sf::RenderWindow& _window)
 	_window.draw(m_turretSprite);
 }
 
-void TurretSelector::OnClick(sf::Vector2i _mousePos)
+void TurretTab::OnClick(sf::Vector2i _mousePos)
 {
 	for (Widget* widget : m_parent->GetWidgets())
 	{
-		TurretSelector* selector = dynamic_cast<TurretSelector*>(widget);
+		TurretTab* selector = dynamic_cast<TurretTab*>(widget);
 		if (selector != nullptr)
 		{
 			selector->m_active = false;

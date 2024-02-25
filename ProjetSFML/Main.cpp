@@ -29,7 +29,7 @@ int main()
 
     //UI
     TextureManager::LoadTexture("turretScreen", "assets/ui/turretScreen.png");
-    TextureManager::LoadTexture("turretSelector", "assets/ui/turretSelector.png");
+    TextureManager::LoadTexture("turretTab", "assets/ui/TurretSelector.png");
 
     GameManager* game = GameManager::GetInstance();
 

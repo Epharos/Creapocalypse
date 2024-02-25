@@ -8,6 +8,8 @@
 #include "TextRenderer.hpp"
 #include "BaseUI.hpp"
 
+#include "Wave.hpp"
+
 class GameManager
 {
 private:
@@ -22,7 +24,7 @@ private:
 
     bool m_debugMode = false;
 
-    int m_wave = 1;
+    Wave* m_currentWave;
 
     TextRenderer m_textRenderer;
 
@@ -38,6 +40,7 @@ private:
         m_world.SpawnEntity(m_player);
         heartSprite = LoadSprite("assets/ui/heart.png", false);
         diamantumSprite = LoadSprite("assets/ui/diamantum.png", false);
+        m_currentWave = new Wave(1, 10);
     };
 
 public:
@@ -54,7 +57,6 @@ public:
     Player*& GetPlayer() { return m_player; }
     BaseUI*& GetCurrentUI() { return m_currentUI; }
     bool GetDebugMode() { return m_debugMode; }
-    int GetWave() { return m_wave; }
     TextRenderer& GetTextRenderer() { return m_textRenderer; }
 
     /// <summary>

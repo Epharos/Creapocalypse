@@ -3,12 +3,12 @@
 
 #include "BaseUI.hpp"
 
-class TurretSelector;
+class TurretTab;
 
 class TurretSelection : public BaseUI
 {
 protected:
-	TurretSelector* m_selectedTurret = nullptr;
+	TurretTab* m_selectedTurret = nullptr;
 public:
 	TurretSelection();
 	~TurretSelection();
@@ -17,9 +17,9 @@ public:
 	void Draw(sf::RenderWindow& _window) override;
 	void OnClick(sf::Vector2i _mousePos) override;
 
-	TurretSelector* GetSelectedTurret() { return m_selectedTurret; }
+	TurretTab* GetSelectedTurret() { return m_selectedTurret; }
 
-	friend class TurretSelector;
+	friend class TurretTab;
 };
 
 #endif

@@ -150,11 +150,14 @@
     <ClCompile Include="TurretSelection.cpp">
       <Filter>Fichiers sources\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TurretSelector.cpp">
+    <ClCompile Include="TurretTab.cpp">
       <Filter>Fichiers sources\UI\Widget</Filter>
     </ClCompile>
     <ClCompile Include="Label.cpp">
       <Filter>Fichiers sources\UI\Widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Wave.cpp">
+      <Filter>Fichiers sources\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,11 +242,14 @@
     <ClInclude Include="Widget.hpp">
       <Filter>Fichiers d%27en-tête\UI\Widget</Filter>
     </ClInclude>
-    <ClInclude Include="TurretSelector.hpp">
+    <ClInclude Include="TurretTab.hpp">
       <Filter>Fichiers d%27en-tête\UI\Widget</Filter>
     </ClInclude>
     <ClInclude Include="Label.hpp">
       <Filter>Fichiers d%27en-tête\UI\Widget</Filter>
+    </ClInclude>
+    <ClInclude Include="Wave.hpp">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
