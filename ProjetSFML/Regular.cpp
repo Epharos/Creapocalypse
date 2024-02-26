@@ -4,15 +4,17 @@
 #include "World.hpp"
 #include "MathUtil.hpp"
 
-Regular::Regular(sf::Vector2f _pos, std::string _texturePath)
-	: Enemy(_pos, _texturePath)
+Regular::Regular(sf::Vector2f _pos)
+	: Enemy(_pos, "regularIdle"), m_movingAnimation("regularMoving", sf::Vector2i(72, 72), 10, 0.075f),
+	m_attackingAnimation("regularAttacking", sf::Vector2i(72, 72), 5, 0.1f), m_dyingAnimation("regularDying", sf::Vector2i(102, 72), 9, 0.07f)
 {
 	m_damage = 10.f;
 	m_attackSpeed = 1.f;
 	m_range = 1.f;
 
 	m_speed = 3.5f;
-	m_animation = Animation(_texturePath, sf::Vector2i(32, 64), 4, 0.1f);
+	m_animation = Animation("regularIdle", sf::Vector2i(72, 72), 4, 0.1f);
+	m_dyingAnimation.Once();
 }
 
 Regular::~Regular()
@@ -47,4 +49,55 @@ void Regular::Attack()
 bool Regular::IsTargetValid(Entity*& _target)
 {
 	return !IsEnemy(_target);
+}
+
+bool Regular::IsDead()
+{
+	return LivingEntity::IsDead() && m_dyingAnimation.IsDone();
+}
+
+void Regular::Update(float _dt)
+{
+	Enemy::Update(_dt);
+
+	m_movingAnimation.Update(_dt);
+
+	if (m_state == EnemyAttacking)
+	{
+		m_attackingAnimation.Update(_dt);
+
+		if (m_attackingAnimation.IsDone())
+		{
+			m_state = EnemyIdle;
+			m_attackingAnimation.Reset();
+		}
+	}
+	else if (m_state == EnemyDying)
+	{
+		m_dyingAnimation.Update(_dt);
+	}
+}
+
+void Regular::Draw(sf::RenderWindow& _window, Camera _camera)
+{
+	if (!ShouldBeRendered(_camera, _window))
+	{
+		return;
+	}
+
+	switch (m_state)
+	{
+	case EnemyIdle:
+		m_animation.Draw(_window, _camera.WorldToScreen(GetPosition()), m_yaw);
+		break;
+	case EnemyMoving:
+		m_movingAnimation.Draw(_window, _camera.WorldToScreen(GetPosition()), m_yaw);
+		break;
+	case EnemyAttacking:
+		m_attackingAnimation.Draw(_window, _camera.WorldToScreen(GetPosition()), m_yaw);
+		break;
+	case EnemyDying:
+		m_dyingAnimation.Draw(_window, _camera.WorldToScreen(GetPosition()), m_yaw);
+		break;
+	}
 }

@@ -11,6 +11,7 @@ Enemy::Enemy(sf::Vector2f _pos, std::string _texturePath)
 	m_speed = 1.f;
 	m_target = nullptr;
 	m_targetPos = sf::Vector2f(MAP_SIZE / 2, MAP_SIZE / 2);
+	m_state = EnemyState::EnemyIdle;
 }
 
 Enemy::~Enemy()
@@ -21,30 +22,54 @@ void Enemy::Update(float _dt)
 {
 	LivingEntity::Update(_dt);
 
+	if (m_state == EnemyState::EnemyDying)
+	{
+		return;
+	}
+
 	if (m_target != nullptr)
 	{
 		if (m_target->IsDead())
 		{
+			m_state = EnemyState::EnemyIdle;
 			m_target = nullptr;
 		}
 	}
 
 	if (m_target == nullptr)
 	{
+		m_state = EnemyState::EnemyIdle;
 		AcquireTarget(GameManager::GetInstance()->GetWorld());
 	}
 
 	if (m_target != nullptr)
 	{
-		m_targetPos = m_target->GetPosition();
-
-		sf::Vector2f newPos = GetPosition() + Normalize(m_targetPos - GetPosition()) * m_speed * _dt;
-		SetPosition(newPos);
-
-		if (DistanceSquared(GetPosition(), m_targetPos) < m_range * m_range)
+		if (m_state != EnemyState::EnemyAttacking)
 		{
-			Attack();
+			m_targetPos = m_target->GetPosition();
+
+			sf::Vector2f newPos = GetPosition() + Normalize(m_targetPos - GetPosition()) * m_speed * _dt;
+			SetPosition(newPos);
+			m_state = EnemyState::EnemyMoving;
 		}
+
+		if (IsColliding(m_target))
+		{
+			m_state = EnemyState::EnemyAttacking;
+
+			if (m_attackCooldown <= 0)
+			{
+				Attack();
+				m_attackCooldown = m_attackSpeed;
+			}
+		}
+	}
+
+	m_attackCooldown -= _dt;
+
+	if (m_health <= 0)
+	{
+		m_state = EnemyState::EnemyDying;
 	}
 }
 

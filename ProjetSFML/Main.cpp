@@ -13,6 +13,10 @@ int main()
     TextureManager::LoadTexture("lmg_spawning", "assets/turrets/lmg_spawning.png");
     TextureManager::LoadTexture("lmg_firing", "assets/turrets/lmg_firing.png");
 
+    TextureManager::LoadTexture("shotgun", "assets/turrets/shotgun.png");
+    TextureManager::LoadTexture("shotgun_spawning", "assets/turrets/shotgun_spawning.png");
+    TextureManager::LoadTexture("shotgun_firing", "assets/turrets/shotgun_firing.png");
+
     //Entities
     TextureManager::LoadTexture("player", "assets/player/idle.png");
     TextureManager::LoadTexture("player_walk", "assets/player/moving.png");
@@ -25,7 +29,10 @@ int main()
     TextureManager::LoadTexture("pigfarm", "assets/buildings/pigfarm.png");
 
     //Enemies
-    TextureManager::LoadTexture("regular", "assets/player/idle.png");
+    TextureManager::LoadTexture("regularIdle", "assets/enemies/regular/idle.png");
+    TextureManager::LoadTexture("regularMoving", "assets/enemies/regular/moving.png");
+    TextureManager::LoadTexture("regularAttacking", "assets/enemies/regular/attack.png");
+    TextureManager::LoadTexture("regularDying", "assets/enemies/regular/dying.png");
 
     //UI
     TextureManager::LoadTexture("turretScreen", "assets/ui/turretScreen.png");

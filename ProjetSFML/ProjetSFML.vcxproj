@@ -155,10 +155,12 @@
     <ClCompile Include="Pigfarm.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Regular.cpp" />
+    <ClCompile Include="ShotgunTurret.cpp" />
     <ClCompile Include="TextRenderer.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClInclude Include="Label.hpp" />
+    <ClInclude Include="ShotgunTurret.hpp" />
     <ClInclude Include="TurretSelection.hpp" />
     <ClInclude Include="TurretTab.hpp" />
     <ClInclude Include="Wave.hpp" />

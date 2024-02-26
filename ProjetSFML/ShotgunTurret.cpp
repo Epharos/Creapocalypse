@@ -1,4 +1,4 @@
-#include "LMGTurret.hpp"
+#include "ShotgunTurret.hpp"
 
 #include "MathUtil.hpp"
 
@@ -6,28 +6,28 @@
 #include "Bullet.hpp"
 #include "GameManager.hpp"
 
-LightMachineGunTurret::LightMachineGunTurret(sf::Vector2f _pos, float _rotation) :
-	BaseTurret(_pos, _rotation, 12.f, 3.f, 0.1f),
-	m_spawingAnimation("lmg_spawning", sf::Vector2i(72, 72), 5, 0.08f),
-	m_shootingAnimation("lmg_firing", sf::Vector2i(102, 72), 8, 0.1f)
+ShotgunTurret::ShotgunTurret(sf::Vector2f _pos, float _rotation) :
+	BaseTurret(_pos, _rotation, 5.f, 1.f, 0.14f),
+	m_spawingAnimation("shotgun_spawning", sf::Vector2i(72, 72), 5, 0.08f),
+	m_shootingAnimation("shotgun_firing", sf::Vector2i(102, 72), 3, 0.1f)
 {
 	SetPosition(_pos);
 	m_maxHealth = 100.f;
 	m_health = m_maxHealth;
-	m_animation = Animation("lmg", sf::Vector2i(102, 72), 4, 0.6f);
+	m_animation = Animation("shotgun", sf::Vector2i(102, 72), 4, 0.6f);
 	m_spawingAnimation.Once();
 
-	m_turretName = "Light Machine Gun Turret";
-	m_turretDescription = "A fast firing turret with a wide spread. Perfect for crowd control.";
+	m_turretName = "Shotgun Turret";
+	m_turretDescription = "3 bullets at once to make sure this fucker is *dead* dead";
 
-	m_bulletDamage = 10.f;
-	m_bulletSpeed = 12.f;
-	m_bulletRange = 24.f;
+	m_bulletDamage = 15.f;
+	m_bulletSpeed = 4.f;
+	m_bulletRange = 10.f;
 
-	m_cost = 12.f;
+	m_cost = 5.5f;
 }
 
-void LightMachineGunTurret::Shoot()
+void ShotgunTurret::Shoot()
 {
 	if (m_target == nullptr)
 	{
@@ -42,14 +42,16 @@ void LightMachineGunTurret::Shoot()
 	sf::Vector2f bulletPos = m_position - sf::Vector2f(0, 22.f / TILE_SCALE) + sf::Vector2f(cos(angle), sin(angle));
 
 	GameManager::GetInstance()->GetWorld().SpawnEntity(new Bullet(bulletPos, angle, m_bulletSpeed, m_bulletDamage, m_bulletRange, "bullet"));
+	GameManager::GetInstance()->GetWorld().SpawnEntity(new Bullet(bulletPos, angle + 0.2, m_bulletSpeed, m_bulletDamage, m_bulletRange, "bullet"));
+	GameManager::GetInstance()->GetWorld().SpawnEntity(new Bullet(bulletPos, angle - 0.2, m_bulletSpeed, m_bulletDamage, m_bulletRange, "bullet"));
 }
 
-bool LightMachineGunTurret::IsTargetValid(Entity*& _target)
+bool ShotgunTurret::IsTargetValid(Entity*& _target)
 {
 	return IsEnemy(_target) && DistanceSquared(GetPosition(), _target->GetPosition()) < (m_range * m_range);
 }
 
-void LightMachineGunTurret::AcquireTarget(World& _world)
+void ShotgunTurret::AcquireTarget(World& _world)
 {
 	std::list<Entity*> targets = std::list(_world.GetEntities());
 	targets.remove_if([this](Entity* _entity) { return !IsTargetValid(_entity); });
@@ -65,7 +67,7 @@ void LightMachineGunTurret::AcquireTarget(World& _world)
 	}
 }
 
-void LightMachineGunTurret::Update(float _dt)
+void ShotgunTurret::Update(float _dt)
 {
 	BaseTurret::Update(_dt);
 
@@ -89,7 +91,7 @@ void LightMachineGunTurret::Update(float _dt)
 	}
 }
 
-void LightMachineGunTurret::Draw(sf::RenderWindow& _window, Camera _camera)
+void ShotgunTurret::Draw(sf::RenderWindow& _window, Camera _camera)
 {
 	if (!ShouldBeRendered(_camera, _window))
 	{
@@ -109,34 +111,34 @@ void LightMachineGunTurret::Draw(sf::RenderWindow& _window, Camera _camera)
 
 	switch (m_state)
 	{
-		case TurretState::Spawning:
-			m_spawingAnimation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
-			break;
-		case TurretState::Searching:
-			m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
-			break;
-		case TurretState::Shooting:
-			m_shootingAnimation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
-			break;
-		case TurretState::Dying:
-			break;
-		case TurretState::Placeholder:
-			m_animation.GetSprite().setColor(!IsPlaceable(GameManager::GetInstance()->GetPlayer(), GameManager::GetInstance()->GetWorld()) ? sf::Color::Red : sf::Color::Blue);
-			m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
-			break;
-		default:
-			m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
-			break;
+	case TurretState::Spawning:
+		m_spawingAnimation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
+		break;
+	case TurretState::Searching:
+		m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
+		break;
+	case TurretState::Shooting:
+		m_shootingAnimation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
+		break;
+	case TurretState::Dying:
+		break;
+	case TurretState::Placeholder:
+		m_animation.GetSprite().setColor(!IsPlaceable(GameManager::GetInstance()->GetPlayer(), GameManager::GetInstance()->GetWorld()) ? sf::Color::Red : sf::Color::Blue);
+		m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
+		break;
+	default:
+		m_animation.Draw(_window, _camera.WorldToScreen(m_position), m_yaw + 3.1415);
+		break;
 	}
 }
 
-void LightMachineGunTurret::SetPosition(sf::Vector2f& _pos)
+void ShotgunTurret::SetPosition(sf::Vector2f& _pos)
 {
 	BaseTurret::SetPosition(_pos);
 	m_hitbox.top = m_position.y - 44.f / TILE_SCALE;
 }
 
-BaseTurret* LightMachineGunTurret::Clone()
+BaseTurret* ShotgunTurret::Clone()
 {
-	return new LightMachineGunTurret(m_position, m_yaw);
+	return new ShotgunTurret(m_position, m_yaw);
 }

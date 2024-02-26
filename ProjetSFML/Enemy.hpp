@@ -5,15 +5,26 @@
 
 class World;
 
+enum EnemyState
+{
+	EnemyIdle,
+	EnemyMoving,
+	EnemyAttacking,
+	EnemyDying
+};
+
 class Enemy : public LivingEntity
 {
 protected:
 	float m_damage;
 	float m_range;
 	float m_attackSpeed;
+	float m_attackCooldown;
 
 	Entity* m_target;
 	sf::Vector2f m_targetPos;
+
+	EnemyState m_state;
 
 	public:
 		Enemy(sf::Vector2f _pos, std::string _texturePath);

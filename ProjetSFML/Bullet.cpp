@@ -56,12 +56,12 @@ bool Bullet::IsColliding(Entity* _other)
 
 bool Bullet::CanCollideWith(Entity*& _other)
 {
-	return IsLivingEntity(_other) && !IsBullet(_other) && !IsTurret(_other);
+	return IsLivingEntity(_other) && !IsBullet(_other) && !IsTurret(_other) && !IsPlayer(_other);
 }
 
 void Bullet::OnCollide(Entity*& _other)
 {
-	if (dynamic_cast<LivingEntity*>(_other) != nullptr)
+	if (dynamic_cast<LivingEntity*>(_other) != nullptr && !IsPlayer(_other))
 	{
 		LivingEntity* livingEntity = dynamic_cast<LivingEntity*>(_other);
 		livingEntity->Hurt(m_damage);

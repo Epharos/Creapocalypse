@@ -4,6 +4,7 @@
 #include "Label.hpp"
 
 #include "LMGTurret.hpp"
+#include "ShotgunTurret.hpp"
 
 #include <functional>
 
@@ -16,6 +17,11 @@ TurretSelection::TurretSelection() : BaseUI(sf::Vector2f(GameManager::GetInstanc
 	lmgSelector->m_active = true;
 	m_selectedTurret = lmgSelector;
 	AddWidget(lmgSelector);
+
+	TurretTab* shotgunSelector = new TurretTab(sf::Vector2f(this->m_position.x + 10 + 131, this->m_position.y + this->m_size.y), this);
+	shotgunSelector->SetTurretSprite("shotgun");
+	shotgunSelector->SetTurret(new ShotgunTurret(sf::Vector2f(0, 0), 0.f));
+	AddWidget(shotgunSelector);
 
 	Label* placingLabel = new Label(sf::Vector2f(
 		this->m_position.x + this->m_size.x - GameManager::GetInstance()->GetTextRenderer().CreateText("Buy >", 24, sf::Color::White).getGlobalBounds().width - 16,
@@ -82,13 +88,8 @@ void TurretSelection::Draw(sf::RenderWindow& _window)
 		textRenderer.RenderText(_window, {
 			{ "Cost: ", sf::Color::White },
 			{ textRenderer.FloatToString(m_selectedTurret->m_turret->GetCost(), 1), sf::Color::Yellow },
-			{ " $", sf::Color::White }
+			{ " diamantum", sf::Color::White }
 			}, sf::Vector2f(m_position.x + 30, m_position.y + m_size.y - 30), 16);
-
-		/*textRenderer.RenderText(_window, {
-			{ "Description: ", sf::Color::White },
-			{ m_selectedTurret->m_turret->GetDescription(), sf::Color::Yellow }
-			}, sf::Vector2f(m_position.x + 30, m_position.y + 198), 16);*/
 
 		textRenderer.RenderTextMultiline(_window, m_selectedTurret->m_turret->GetDescription(), sf::Vector2f(m_position.x + 30, m_position.y + 264), 16, sf::Color::Yellow, 35);
 	}

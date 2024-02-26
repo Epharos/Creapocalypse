@@ -27,14 +27,36 @@ void Wave::Render(sf::RenderWindow& window)
 			{ tr.FloatToString(WAVE_PREPARE_TIME - m_internalTimer, 0), sf::Color(255, 50, 50)},
 			{ " seconds", sf::Color::White } },
 			sf::Vector2f(16, window.getSize().y - 32), 16);
+		return;
 	}
+
+	if (m_internalTimer < WAVE_PREPARE_TIME + 2)
+	{
+		tr.RenderText(window, "Wave incoming !", sf::Vector2f(16, window.getSize().y - 32), 16, sf::Color(255, 50, 50));
+		return;
+	}
+
+	int enemiesAlive = 0;
+
+	for (auto enemy : m_enemies)
+	{
+		if (!enemy->IsDead())
+		{
+			enemiesAlive++;
+		}
+	}
+
+	tr.RenderText(window, {
+		{ std::to_string(enemiesAlive), sf::Color(255, 50, 50) },
+		{ " enemies remaining", sf::Color::White }
+		}, sf::Vector2f(16, window.getSize().y - 32), 16);
 }
 
 void Wave::SpawnWave(World& _world)
 {
 	for (int i = 0; i < m_waveSize; i++)
 	{
-		Regular* enemy = new Regular(sf::Vector2f((rand() / (float)RAND_MAX) * MAP_SIZE, (rand() / (float)RAND_MAX) * MAP_SIZE), "player_walk");
+		Regular* enemy = new Regular(sf::Vector2f((rand() / (float)RAND_MAX) * MAP_SIZE, (rand() / (float)RAND_MAX) * MAP_SIZE));
 		_world.SpawnEntity(enemy);
 		m_enemies.push_back(enemy);
 	}

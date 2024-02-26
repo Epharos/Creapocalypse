@@ -159,6 +159,9 @@
     <ClCompile Include="Wave.cpp">
       <Filter>Fichiers sources\Core</Filter>
     </ClCompile>
+    <ClCompile Include="ShotgunTurret.cpp">
+      <Filter>Fichiers sources\Entities\Turrets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.hpp">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Wave.hpp">
       <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotgunTurret.hpp">
+      <Filter>Fichiers d%27en-tête\Entities\Turrets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
